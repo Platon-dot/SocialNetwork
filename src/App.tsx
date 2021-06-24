@@ -6,22 +6,23 @@ import badges from './img/dribbble.png'
 import exploreStories from './img/google_plus.png'
 import popularGroups from './img/instagram.png'
 import authorProfile from './img/linkedin.png'
-import Header from "./components/header";
-import MenuBox from "./components/MenuBox";
-import NewsBox from "./components/NewsBox";
-import SettingsBox from "./components/SettingsBox";
-import Footer from "./components/Footer";
+import Header from "./components/Header/header";
+import MenuBox from "./components/MenuBox/MenuBox";
+import NewsBox from "./components/NewsZone/NewsBox";
+import SettingsBox from "./components/Settings/SettingsBox";
+import Footer from "./components/Footer/Footer";
 
 
 
 const App = () => {
-    return (
-        <div className="faceofsocialpage">
+    return (<div>
             <Header/>
+        <div className="socialPage">
             <MenuBox/>
             <NewsBox/>
             <SettingsBox/>
             <Footer/>
+        </div>
         </div>
     );
 }

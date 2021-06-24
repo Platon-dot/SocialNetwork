@@ -1,0 +1,8 @@
+.footer {
+    grid-area: footer;
+    background-color: #fff;
+    margin: 8px 15px 5px 15px;
+    border-radius: 20px;
+    color: #888888;
+    font-size: 18px;
+}

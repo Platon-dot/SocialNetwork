@@ -1,0 +1,84 @@
+.news {
+    grid-area: news;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    color: #888888;
+    font-size: 18px;
+    text-align: center;
+    /*height: 200vh;*/
+    display: grid;
+    grid-template-areas:
+    "photo"
+    "newpost"
+    "userpost"
+    "userpost";
+    /*grid-template-rows: 1fr 0.6fr 1fr;*/
+}
+
+.news img {
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.item {
+    margin-bottom: 5px;
+}
+
+
+
+.newPost {
+    grid-area: newpost;
+    background: #f7f7f7;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    margin-bottom: 1rem;
+    width: 98%;
+    border-radius: 15px;
+    display: grid;
+    grid-template-areas:
+    "linebutton"
+    "userTextArea";
+    grid-template-rows: 40px 1fr;
+}
+
+
+.lineNewPost {
+    grid-area: linebutton;
+    display: grid;
+    grid-template-areas:
+    "link space space";
+    grid-template-columns: 2fr 1fr 70%;
+}
+
+.linkNewPost {
+    text-decoration: none;
+    text-align: center;
+    grid-area: link;
+}
+
+.userTextArea {
+    grid-area: userTextArea;
+}
+
+.userTextArea textarea {
+    border-radius: 15px;
+    border: 2px #f1f1f1 solid;
+    font-size: 12px;
+    height: 100px;
+    width: 95%;
+    font-family: inherit;
+    padding: 10px 10px 10px 10px;
+}
+button {
+    color: white;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+    border: 2px #f1f1f1 solid;
+    background: #85c6d4;
+    border-radius: 15px;
+}

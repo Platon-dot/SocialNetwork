@@ -1,12 +1,13 @@
 import React from "react";
-import logo from "../img/logotype.png";
+import logo from "../../img/logotype.png";
+import style from "./header.module.css";
 
 const Header = () => {
-    return <div>
-        <div className="logo header">
+    return <div className={style.top}>
+        <div className={`${style.logo} ${style.header}`}>
             <img src={logo} alt="logo"/>
         </div>
-        <div className="searchpanel header">
+        <div className={style.search}>
             <input type="text" placeholder="Start typing to search.."/>
         </div>
     </div>

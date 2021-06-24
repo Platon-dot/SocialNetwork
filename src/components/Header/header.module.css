@@ -1,0 +1,41 @@
+.faceofsocialpage .logo img {
+    padding-left: 25px;
+}
+
+
+.top {
+    /*width: 100vw;*/
+    display: grid;
+    grid-template-areas:
+    "logo search header";
+    grid-template-columns: 250px 1fr 250px;
+    grid-template-rows: 100px;
+    /*height: 100px;*/
+}
+
+.search {
+    grid-area: search;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.logo img {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.header {
+    border-radius: 20px;
+}
+
+input {
+    width: 350px;
+    height: 48px;
+    background-color: #eeeeee;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    margin-top: 25px;
+}

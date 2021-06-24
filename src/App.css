@@ -4,130 +4,18 @@
   padding: 0;
 }
 
-.faceofsocialpage {
+.socialPage {
   display: grid;
   grid-template-areas:
-    "logo searchpanel header"
+    "logo search header"
     "menu news settings"
     "footer footer footer";
   grid-template-columns: 250px 1fr 250px;
-  grid-template-rows: 100px 1fr 200px;
+  grid-template-rows: 1% 1fr 250px;
 }
-
 
 body {
   background-color: #f7f7f7;
 }
 
-.logo {
-  grid-area: logo;
-}
 
-.logo img {
-  height: 80px;
-  margin-bottom: 10px;
-}
-
-div input {
-  grid-area: searchpanel;
-}
-
-input {
-  width: 350px;
-  height: 48px;
-  background-color: #eeeeee;
-  border: none;
-  outline: none;
-  border-radius: 50px;
-}
-
-.header {
-  border-radius: 20px;
-}
-
-.faceofsocialpage .logo img {
-  padding-left: 25px;
-}
-
-.faceofsocialpage .searchpanel input {
-  margin-top: 15px;
-  margin-left: 15px;
-  padding-left: 20px;
-}
-
-
-.menu {
-  grid-area: menu;
-  background-color: #fff;
-  margin-top: 15px;
-  margin-left: 15px;
-  padding-left: 20px;
-  padding-top: 20px;
-  border-radius: 20px;
-  max-height: 400px;
-}
-
-.news {
-  grid-area: news;
-  background-color: #fff;
-  margin-top: 15px;
-  margin-left: 15px;
-  padding-left: 20px;
-  border-radius: 20px;
-  color: #888888;
-  font-size: 18px;
-  text-align: center;
-  height: 200vh;
-}
-
-.news img {
-  border-radius: 10px;
-  margin: 20px;
-}
-.settings {
-  grid-area: settings;
-  background-color: #fff;
-  margin-top: 15px;
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-left: 20px;
-  border-radius: 20px;
-  color: #888888;
-  font-size: 18px;
-  text-align: center;
-  max-height: 400px;
-}
-
-.footer {
-  grid-area: footer;
-  background-color: #fff;
-  margin: 8px 15px 5px 15px;
-  border-radius: 20px;
-  color: #888888;
-  font-size: 18px;
-}
-
-.item {
-  margin-bottom: 15px;
-}
-
-.icon {
-  width: 45px;
-  height: 45px;
-}
-
-span a {
-  color: #888888;
-  font-size: 18px;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-span a:hover {
-  color: cadetblue;
-}
-
-h5 {
-  color: #888888;
-  margin: 0 0 15px 0;
-}
