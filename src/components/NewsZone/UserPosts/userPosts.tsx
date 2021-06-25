@@ -1,20 +1,29 @@
 import React from "react";
 import style from './userPosts.module.css';
 
-const UserPosts = () => {
+type UserPostsPropsType = {
+    userName: string
+    message: string
+    likeCounts: number
+}
+
+const UserPosts: React.FC<UserPostsPropsType> = (props) => {
     return (
         <div>
             <div className={style.userPostsBlock}>
                 <div className={style.userPost}>
-                    <img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="uresAvatar"/>
-                    post 1
+                    <span className={style.userNamePost}>{props.userName}</span>
+                    <img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="userAvatar"/>
+                    {props.message}
                     <div>
-                        <span>Like</span>
+                        <span>{props.likeCounts} Like</span>
                     </div>
                 </div>
             </div>
 
         </div>
+
+
     )
 }
 

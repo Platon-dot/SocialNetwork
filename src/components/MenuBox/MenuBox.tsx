@@ -7,7 +7,7 @@ import authorProfile from "../../img/linkedin.png";
 import style from './MenuBox.module.css'
 
 const MenuBox = () => {
-    return  <div className={style.menu}>
+    return <div className={style.menu}>
         <h5>News Feeds</h5>
         <div className={style.item}>
             <img className={style.icon} src={newsfeed} alt=""/>

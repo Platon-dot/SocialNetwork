@@ -11,19 +11,20 @@ import MenuBox from "./components/MenuBox/MenuBox";
 import NewsBox from "./components/NewsZone/NewsBox";
 import SettingsBox from "./components/Settings/SettingsBox";
 import Footer from "./components/Footer/Footer";
-
+import {BrowserRouter, Route} from "react-router-dom";
 
 
 const App = () => {
-    return (<div>
-            <Header/>
-        <div className="socialPage">
-            <MenuBox/>
-            <NewsBox/>
-            <SettingsBox/>
-            <Footer/>
-        </div>
-        </div>
+    return (
+        <BrowserRouter>
+            <Route component={Header}/>
+            <div className="socialPage">
+                <Route component={MenuBox}/>
+                <Route component={NewsBox}/>
+                <Route component={SettingsBox}/>
+                <Route component={Footer}/>
+            </div>
+        </BrowserRouter>
     );
 }
 

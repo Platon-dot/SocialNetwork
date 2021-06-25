@@ -28,8 +28,10 @@ const NewsBox = () => {
                     </textarea>
                 </div>
             </div>
-            <UserPosts/>
-            <UserPosts/>
+            <div className={style.userPost}>
+                <UserPosts userName={'Juan'} message={'Privet Alinka'} likeCounts={48}/>
+                <UserPosts userName={'Jenifer'} message={'Hi bratishka'} likeCounts={35}/>
+            </div>
         </div>
     )
 }
