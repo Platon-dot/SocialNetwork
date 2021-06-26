@@ -31,6 +31,7 @@ const NewsBox = () => {
             <div className={style.userPost}>
                 <UserPosts userName={'Juan'} message={'Privet Alinka'} likeCounts={48}/>
                 <UserPosts userName={'Jenifer'} message={'Hi bratishka'} likeCounts={35}/>
+                <UserPosts userName={'Katia'} message={'Hola Joan'} likeCounts={65}/>
             </div>
         </div>
     )
