@@ -1,27 +1,6 @@
-.news {
-    grid-area: news;
-    background-color: #fff;
-    margin-top: 15px;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 15px;
-    border-radius: 20px;
-    color: #888888;
-    font-size: 18px;
-    text-align: center;
-    /*height: 200vh;*/
-    display: grid;
-    grid-template-areas:
-    "photo"
-    "newpost"
-    "userpost"
-    "userpost";
-    /*grid-template-rows: 1fr 0.6fr 1fr;*/
-}
 
-.news img {
+
+.image_for_news img {
     border-radius: 10px;
     margin: 20px;
 }

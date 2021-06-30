@@ -39,3 +39,7 @@ input {
     border-radius: 50px;
     margin-top: 25px;
 }
+
+.searchZone {
+    padding-left: 20px;
+}

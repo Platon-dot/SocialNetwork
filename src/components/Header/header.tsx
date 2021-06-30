@@ -8,7 +8,7 @@ const Header = () => {
             <img src={logo} alt="logo"/>
         </div>
         <div className={style.search}>
-            <input type="text" placeholder="Start typing to search.."/>
+            <input className={style.searchZone} type="text" placeholder="Start typing to search.."/>
         </div>
     </div>
 }

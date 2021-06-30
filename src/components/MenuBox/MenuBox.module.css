@@ -3,8 +3,7 @@
     background-color: #fff;
     margin-top: 15px;
     margin-left: 15px;
-    padding-left: 20px;
-    padding-top: 20px;
+    padding: 20px;
     border-radius: 20px;
     max-height: 400px;
 }
@@ -26,6 +25,9 @@ span a {
     margin-left: 20px;
 }
 
+.activeLink {
+    color: #677e51;
+}
 
 span a:hover {
     color: cadetblue;
