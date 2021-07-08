@@ -1,16 +1,3 @@
-
-
-.image_for_news img {
-    border-radius: 10px;
-    margin: 20px;
-}
-
-.item {
-    margin-bottom: 5px;
-}
-
-
-
 .newPost {
     grid-area: newpost;
     background: #f7f7f7;
@@ -20,28 +7,19 @@
     border-radius: 15px;
     display: grid;
     grid-template-areas:
-    "linebutton"
-    "userTextArea";
-    grid-template-rows: 40px 1fr;
-}
-
-
-.lineNewPost {
-    grid-area: linebutton;
-    display: grid;
-    grid-template-areas:
-    "link space space";
-    grid-template-columns: 2fr 1fr 70%;
-}
-
-.linkNewPost {
-    text-decoration: none;
-    text-align: center;
-    grid-area: link;
+    "lineButton"
+    "textArea";
+    grid-column: auto;
+    grid-gap: 5px;
 }
 
 .userTextArea {
-    grid-area: userTextArea;
+    grid-area: textArea;
+}
+
+.lineNewPost {
+    text-decoration: none;
+    text-align: center;
 }
 
 .userTextArea textarea {
@@ -53,12 +31,16 @@
     font-family: inherit;
     padding: 10px 10px 10px 10px;
 }
+
 button {
+    grid-area: lineButton;
     color: white;
     font-weight: bold;
+    margin-left: 10%;
     padding: 10px 10px 10px 10px;
     border: 2px #f1f1f1 solid;
     background: #85c6d4;
     border-radius: 15px;
+    display: flex;
 }
 

@@ -1,0 +1,38 @@
+.dialogs_global {
+    display: grid;
+    grid-template-areas:
+    "dialogs messages";
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+}
+
+.dialogs, .messages {
+    margin-top: 10px;
+
+}
+
+.dialogs {
+    grid-area: dialogs;
+    background: #f7f7f7;
+    border-radius: 15px;
+}
+
+
+
+.messages {
+    grid-area: messages;
+    background: #f7f7f7;
+    border-radius: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #7e8388;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.dialogs .active a {
+    color: orangered;
+}

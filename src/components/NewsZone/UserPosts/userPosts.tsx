@@ -1,10 +1,12 @@
 import React from "react";
 import style from './userPosts.module.css';
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
-type UserPostsPropsType = {
+export type UserPostsPropsType = {
     userName: string
     message: string
     likeCounts: number
+    id: string
 }
 
 const UserPosts: React.FC<UserPostsPropsType> = (props) => {
@@ -12,8 +14,7 @@ const UserPosts: React.FC<UserPostsPropsType> = (props) => {
         <div>
             <div className={style.userPostsBlock}>
                 <div className={style.userPost}>
-                    <span className={style.userNamePost}>{props.userName}</span>
-                    <img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="userAvatar"/>
+                    <ProfileInfo userName={props.userName}/>
                     {props.message}
                     <div>
                         <span>{props.likeCounts} Like</span>

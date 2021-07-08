@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/header";
 import MenuBox from "./components/MenuBox/MenuBox";
-import NewsBox from "./components/NewsZone/NewsBox";
+import NewsGeneralZone from "./components/NewsZone/NewsGeneralZone";
 import SettingsBox from "./components/Settings/SettingsBox";
 import Footer from "./components/Footer/Footer";
 import {BrowserRouter, Route} from "react-router-dom";
@@ -15,11 +15,12 @@ import Settings from "./components/Settings/Settings";
 const App = (props: any) => {
     return (
         <BrowserRouter>
+            <div className="backgroundZone">
             <Route component={Header}/>
             <div className="socialPage">
                 <Route component={MenuBox}/>
                 <div className="socialPageContent">
-                    <Route path="/newsbox" component={NewsBox}/>
+                    <Route path="/newsbox" component={NewsGeneralZone}/>
                     <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
@@ -27,6 +28,7 @@ const App = (props: any) => {
                 </div>
                 <Route component={SettingsBox}/>
                 <Route component={Footer}/>
+            </div>
             </div>
         </BrowserRouter>
     );
