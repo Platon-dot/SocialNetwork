@@ -1,26 +1,18 @@
 import React from "react";
 import style from './NewsGeneralZone.module.css';
-import UserPosts, {UserPostsPropsType} from "./UserPosts/userPosts";
+import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import {v1} from "uuid";
+import {PostsType} from "../../redux/state";
 
-type postDataPropsTypes = {
-    id: string,
-    name: string,
-    message: string,
-    likes: number,
+
+type NewsGeneralZoneType = {
+    userPosts: Array<PostsType>
 }
 
-const NewsGeneralZone = (props: postDataPropsTypes) => {
+const NewsGeneralZone = (props: NewsGeneralZoneType) => {
 
-    let posts = [
-        {id: v1(), name: "Juan", message: "Privet Alinka", likes: 48},
-        {id: v1(), name: "Jenifer", message: "Hi bratishka", likes: 35},
-        {id: v1(), name: "Katia", message: "Hola Joan", likes: 65},
-    ]
-
-    let showPost = posts.map(p => (
-        <UserPosts id={p.id} userName={p.name} message={p.message} likeCounts={p.likes}/>)
+    let showPost = props.userPosts.map(p => (
+        <UserPosts id={p.id} userName={p.name} message={p.message} likeCounts={p.likes} key={p.id}/>)
     )
 
     return (
