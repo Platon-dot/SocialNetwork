@@ -3,7 +3,6 @@
     grid-template-areas:
     "dialogs messages";
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
 
 }
 
@@ -15,7 +14,7 @@
 .dialogs {
     grid-area: dialogs;
     background: #f7f7f7;
-    border-radius: 15px;
+    border-radius: 15px 0 0 15px;
 }
 
 
@@ -23,7 +22,7 @@
 .messages {
     grid-area: messages;
     background: #f7f7f7;
-    border-radius: 15px;
+    border-radius: 0 15px 15px 0;
 }
 
 a {

@@ -4,7 +4,7 @@ import badges from "../../img/dribbble.png";
 import exploreStories from "../../img/google_plus.png";
 import popularGroups from "../../img/instagram.png";
 import authorProfile from "../../img/linkedin.png";
-import style from './MenuBox.module.css'
+import style from './LeftMenuBar.module.css'
 import {NavLink} from "react-router-dom";
 
 type NavLinkType = {
@@ -12,45 +12,45 @@ type NavLinkType = {
     href: string,
 };
 
-const MenuBox = () => {
+const LeftMenuBar = () => {
     return (
-        <div className={style.menu}>
-            <h5>News Feeds</h5>
-            <div className={style.item}>
-                <img className={style.icon} src={newsfeed} alt=""/>
-                <span>
+        <div className={style.leftMenu}>
+            <h5 className={style.boxMenuName}>News Feeds</h5>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={newsfeed} alt=""/>
+                <span className={style.linkName}>
                     <NavLink to="/newsbox" activeClassName={style.activeLink}>
                         News page
                     </NavLink>
                 </span>
             </div>
-            <div className={style.item}>
-                <img className={style.icon} src={badges} alt=""/>
-                <span>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={badges} alt=""/>
+                <span className={style.linkName}>
                     <NavLink to="/dialogs" activeClassName={style.activeLink}>
                     Dialogs
                 </NavLink>
                 </span>
             </div>
-            <div className={style.item}>
-                <img className={style.icon} src={exploreStories} alt=""/>
-                <span>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={exploreStories} alt=""/>
+                <span className={style.linkName}>
                     <NavLink to="/news" activeClassName={style.activeLink}>
                         News
                     </NavLink>
                 </span>
             </div>
-            <div className={style.item}>
-                <img className={style.icon} src={popularGroups} alt=""/>
-                <span>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={popularGroups} alt=""/>
+                <span className={style.linkName}>
                     <NavLink to="/music" activeClassName={style.activeLink}>
                         Music
                     </NavLink>
                 </span>
             </div>
-            <div className={style.item}>
-                <img className={style.icon} src={authorProfile} alt=""/>
-                <span>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={authorProfile} alt=""/>
+                <span className={style.linkName}>
                     <NavLink to="/settings" activeClassName={style.activeLink}>
                         Settings
                     </NavLink>
@@ -60,4 +60,4 @@ const MenuBox = () => {
     )
 }
 
-export default MenuBox
+export default LeftMenuBar
