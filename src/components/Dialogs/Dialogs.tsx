@@ -3,6 +3,7 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {DialogsType, MessagesType} from "../../redux/state";
+import NewDialogMessage from "./Message/NewMessage/NewDialogMessage";
 
 type DialogsPropsType = {
     dialog: Array<DialogsType>
@@ -24,7 +25,7 @@ const Dialogs = (props: DialogsPropsType) => {
                     {showMessageElemets}
                 </div>
             </div>
-
+            <NewDialogMessage/>
         </div>
     )
 }
