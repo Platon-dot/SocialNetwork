@@ -5,7 +5,7 @@ import LeftMenuBar from "./components/LeftMenuBar/LeftMenuBar";
 import NewsGeneralZone from "./components/MainZone/NewsGeneralZone";
 import SettingsBox from "./components/Settings/SettingsBox";
 import Footer from "./components/Footer/Footer";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -15,7 +15,9 @@ import Friends from "./components/Friends/Friends";
 
 type AppPropsType = {
     state: RootStateType
+    addPost: (postMessage: string) => void
 }
+
 
 const App = (props: AppPropsType) => {
     let posts = state.profilePage.userPosts
@@ -24,22 +26,25 @@ const App = (props: AppPropsType) => {
 
     return (
 
-            <div className="backgroundZone">
-                <Route component={Header}/>
-                <div className="socialPage">
-                    <Route component={LeftMenuBar}/>
-                    <Route component={Friends}/>
-                    <div className="socialPageContent">
-                        <Route path="/newsbox" render={() => <NewsGeneralZone userPosts={posts}/>}/>
-                        <Route path="/dialogs" render={() => <Dialogs dialog={dialog} message={message}/>}/>
-                        <Route path="/news" component={News}/>
-                        <Route path="/music" component={Music}/>
-                        <Route path="/settings" component={Settings}/>
-                    </div>
-                    <Route component={SettingsBox}/>
-                    <Route component={Footer}/>
+        <div className="backgroundZone">
+            <Route component={Header}/>
+            <div className="socialPage">
+                <Route component={LeftMenuBar}/>
+                <Route component={Friends}/>
+                <div className="socialPageContent">
+                    <Route path="/newsbox" render={() =>
+                        <NewsGeneralZone
+                            userPosts={posts}
+                            addPost={props.addPost}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs dialog={dialog} message={message}/>}/>
+                    <Route path="/news" component={News}/>
+                    <Route path="/music" component={Music}/>
+                    <Route path="/settings" component={Settings}/>
                 </div>
+                <Route component={SettingsBox}/>
+                <Route component={Footer}/>
             </div>
+        </div>
 
     );
 }

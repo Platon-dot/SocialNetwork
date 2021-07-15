@@ -60,4 +60,16 @@ let state: RootStateType = {
     }
 }
 
+
+export const addPost = (postMessage: string) => {
+    const newPost : PostsType = {
+        id: v1(),
+        name: "Sonia",
+        message: postMessage,
+        likes: 0
+    };
+    state.profilePage.userPosts.unshift(newPost);
+
+};
+
 export default state;

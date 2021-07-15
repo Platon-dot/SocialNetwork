@@ -13,7 +13,6 @@
 
 .dialogs {
     grid-area: dialogs;
-    background: #f7f7f7;
     border-radius: 15px 0 0 15px;
 }
 
@@ -21,7 +20,6 @@
 
 .messages {
     grid-area: messages;
-    background: #f7f7f7;
     border-radius: 0 15px 15px 0;
 }
 
