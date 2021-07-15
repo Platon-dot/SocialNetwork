@@ -2,12 +2,14 @@ import React from "react";
 import style from './NewsGeneralZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import {addPost, PostsType} from "../../redux/state";
+import {addPost, PostsType, updateNewPostText} from "../../redux/state";
 
 
 type NewsGeneralZoneType = {
     userPosts: Array<PostsType>
     addPost: (postMessage: string) => void
+    newPostText: string
+    updateNewPostText: (userMessage: string) => void
 }
 
 const NewsGeneralZone = (props: NewsGeneralZoneType) => {
@@ -24,8 +26,9 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
                     alt=""/>
             </div>
 
-            <NewUserMessage addPost={addPost}/>
-
+            <NewUserMessage addPost={addPost}
+                            newPostText={props.newPostText}
+                            updateNewPostText={props.updateNewPostText}/>
             <div className={style.userPost}>
                 {showPost}
             </div>

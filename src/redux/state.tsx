@@ -20,6 +20,7 @@ export type MessagesType = {
 
 type ProfilePageType = {
     userPosts: Array<PostsType>
+    newPostText: string
 }
 
 type DialogsPageTypes = {
@@ -39,7 +40,8 @@ let state: RootStateType = {
             {id: v1(), name: "Juan", message: "Privet Alinka", likes: 48},
             {id: v1(), name: "Jenifer", message: "Hi bratishka", likes: 35},
             {id: v1(), name: "Katia", message: "Hola Joan", likes: 65},
-        ]
+        ],
+        newPostText: "Hello Alex, you are cool programmer"
     },
     dialogsPage: {
         dialogsData: [
@@ -72,4 +74,11 @@ export const addPost = (postMessage: string) => {
     renderTree(state)
 };
 
+
+export const updateNewPostText = (userMessage: string) => {
+    state.profilePage.newPostText = userMessage
+    renderTree(state)
+}
+
 export default state;
+

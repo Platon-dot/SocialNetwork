@@ -19,7 +19,7 @@ const LeftMenuBar = () => {
             <div className={style.itemLink}>
                 <img className={style.iconMenu} src={newsfeed} alt=""/>
                 <span className={style.linkName}>
-                    <NavLink to="/newsbox" activeClassName={style.activeLink}>
+                    <NavLink to="/theWall" activeClassName={style.activeLink}>
                         News page
                     </NavLink>
                 </span>

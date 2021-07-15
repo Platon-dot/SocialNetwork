@@ -10,19 +10,22 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import state, {RootStateType} from "./redux/state";
+import {RootStateType} from "./redux/state";
 import Friends from "./components/Friends/Friends";
 
 type AppPropsType = {
     state: RootStateType
     addPost: (postMessage: string) => void
+    updateNewPostText: (userMessage: string) => void
 }
 
 
 const App = (props: AppPropsType) => {
-    let posts = state.profilePage.userPosts
-    let dialog = state.dialogsPage.dialogsData
-    let message = state.dialogsPage.messagesData
+    let posts = props.state.profilePage.userPosts
+    let dialog = props.state.dialogsPage.dialogsData
+    let message = props.state.dialogsPage.messagesData
+    let  newPostText = props.state.profilePage.newPostText
+
 
     return (
 
@@ -32,10 +35,12 @@ const App = (props: AppPropsType) => {
                 <Route component={LeftMenuBar}/>
                 <Route component={Friends}/>
                 <div className="socialPageContent">
-                    <Route path="/newsbox" render={() =>
+                    <Route path="/theWall" render={() =>
                         <NewsGeneralZone
                             userPosts={posts}
-                            addPost={props.addPost}/>}/>
+                            addPost={props.addPost}
+                            newPostText={newPostText}
+                            updateNewPostText={props.updateNewPostText}/>}/>
                     <Route path="/dialogs" render={() => <Dialogs dialog={dialog} message={message}/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>

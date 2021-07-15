@@ -1,10 +1,12 @@
 import React from "react";
 import style from './NewUserMessage.module.css';
-import {addPost} from "../../../redux/state";
+import {updateNewPostText} from "../../../redux/state";
 
 
 type NewMessageType = {
+    newPostText: string
     addPost: (postMessage: string) => void
+    updateNewPostText: (userMessage: string) => void
 }
 
 const NewUserMessage = (props: NewMessageType) => {
@@ -17,6 +19,11 @@ const NewUserMessage = (props: NewMessageType) => {
         }
     }
 
+    const onPostChange = () => {
+        if (newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
+    }
     return (
         <div className={style.newPost}>
             <div className={style.lineNewPost}>
@@ -29,8 +36,9 @@ const NewUserMessage = (props: NewMessageType) => {
                     <textarea ref={newPostElement} name="message"
                               className={style.userMessage}
                               cols={30} rows={10}
-                              placeholder="What's on your mind?">
-                    </textarea>
+                              placeholder="What's on your mind?"
+                              onChange={onPostChange}
+                              value={props.newPostText}/>
             </div>
         </div>
     )
