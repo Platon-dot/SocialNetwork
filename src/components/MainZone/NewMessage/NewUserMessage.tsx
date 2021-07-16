@@ -9,6 +9,7 @@ type NewMessageType = {
     updateNewPostText: (userMessage: string) => void
 }
 
+
 const NewUserMessage = (props: NewMessageType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -23,6 +24,7 @@ const NewUserMessage = (props: NewMessageType) => {
         if (newPostElement.current) {
             props.updateNewPostText(newPostElement.current.value)
         }
+
     }
     return (
         <div className={style.newPost}>
