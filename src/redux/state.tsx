@@ -1,5 +1,18 @@
 import {v1} from "uuid";
-import {renderTree} from "../render";
+
+type subscribeType = {
+    subscriber: () => void
+}
+
+
+// I need a variable without typing problems
+let rerenderTree = () => {
+    console.log('state')
+}
+
+export let subscribe = (observer: any) => {
+    rerenderTree = observer // publisher - subscriber
+}
 
 export type PostsType = {
     id: string
@@ -62,7 +75,6 @@ let state: RootStateType = {
     }
 }
 
-
 export const addPost = () => {
     const newPost: PostsType = {
         id: v1(),
@@ -72,14 +84,14 @@ export const addPost = () => {
     };
     state.profilePage.userPosts.unshift(newPost);
     state.profilePage.newPostText = ""
-    renderTree(state)
+    rerenderTree()
 };
-
 
 export const updateNewPostText = (userMessage: string) => {
     state.profilePage.newPostText = userMessage
-    renderTree(state)
+    rerenderTree()
 }
+
 
 export default state;
 

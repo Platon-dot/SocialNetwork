@@ -1,6 +1,5 @@
 import React from "react";
 import style from './NewUserMessage.module.css';
-import {updateNewPostText} from "../../../redux/state";
 
 
 type NewMessageType = {
