@@ -1,29 +1,25 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import style from './NewUserMessage.module.css';
+import {ActionTypes} from "../../../redux/state";
 
 
 type NewMessageType = {
     newPostText: string
     addPost: (postMessage: string) => void
     updateNewPostText: (userMessage: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 
 const NewUserMessage = (props: NewMessageType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
-
     const addPost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-        }
+        props.dispatch({type: "ADD_POST", newPostText: props.newPostText})
     }
 
-    const onPostChange = () => {
-        if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
-        }
-
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value
+        props.dispatch({type: "UPDATE_NEW_POST_TEXT", newPostText: text})
     }
     return (
         <div className={style.newPost}>
@@ -34,7 +30,7 @@ const NewUserMessage = (props: NewMessageType) => {
                 </a>
             </div>
             <div className={style.userTextArea}>
-                    <textarea ref={newPostElement} name="message"
+                    <textarea name="message"
                               className={style.userMessage}
                               cols={30} rows={10}
                               placeholder="What's on your mind?"

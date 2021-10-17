@@ -1,12 +1,5 @@
 import {v1} from "uuid";
 
-type subscribeType = {
-    subscriber: () => void
-}
-
-
-// I need a variable without typing problems
-
 
 export type PostsType = {
     id: string
@@ -40,20 +33,6 @@ export type RootStateType = {
     dialogsPage: DialogsPageTypes
 }
 
-
-// export const addPost = () => {
-//     const newPost: PostsType = {
-//         id: v1(),
-//         name: "Sonia",
-//         message: state.profilePage.newPostText,
-//         likes: 0
-//     };
-//     state.profilePage.userPosts.unshift(newPost);
-//     state.profilePage.newPostText = ""
-//     onChange()
-// };
-
-
 export type StoreType = {
     _state: RootStateType
     updateNewPostText: (userMessage: string) => void,
@@ -61,6 +40,19 @@ export type StoreType = {
     _onChange: () => void,
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: ActionTypes) => void
+}
+
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType
+
+type AddPostActionType = {
+    type: "ADD_POST"
+    newPostText: string
+}
+
+type ChangeNewTextActionType = {
+    type: "UPDATE_NEW_POST_TEXT"
+    newPostText: string
 }
 
 export const store: StoreType = {
@@ -82,14 +74,21 @@ export const store: StoreType = {
                 {id: v1(), name: "Sasha"},
                 {id: v1(), name: "Velery"},
             ],
-
-
             messagesData: [
                 {id: v1(), message: "Hello, how is your IT-KAMASUTRA"},
                 {id: v1(), message: "Hello, que tal es tu IT-KAMASUTRA"},
                 {id: v1(), message: "Привет, как твоя IT-KAMASUTRA"}
             ]
         }
+    },
+    _onChange() {
+        console.log('state changed')
+    },
+    getState() {
+        return this._state;
+    },
+    subscribe(callback) {
+        this._onChange = callback
     },
     updateNewPostText(userMessage: string) {
         this._state.profilePage.newPostText = userMessage
@@ -106,16 +105,26 @@ export const store: StoreType = {
         this._state.profilePage.newPostText = ""
         this._onChange()
     },
-    _onChange() {
-        console.log('state changed')
-    },
-    subscribe(callback) {
-        this._onChange = callback // publisher - subscriber
-    },
-    getState() {
-        return this._state;
+    dispatch(action) {
+        if (action.type === "ADD_POST") {
+            // this._addPost()
+            const newPost: PostsType = {
+                id: v1(),
+                name: "Sonia",
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            };
+            this._state.profilePage.userPosts.unshift(newPost);
+            this._state.profilePage.newPostText = ""
+            this._onChange()
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+            // this._updateNewPostText(action.newPostText)
+            this._state.profilePage.newPostText = action.newPostText
+            this._onChange()
+        }
     }
 }
 
 export default store;
+
 

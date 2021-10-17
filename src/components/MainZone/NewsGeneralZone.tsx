@@ -2,7 +2,7 @@ import React from "react";
 import style from './NewsGeneralZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import { PostsType } from "../../redux/state";
+import {ActionTypes, PostsType} from "../../redux/state";
 
 
 type NewsGeneralZoneType = {
@@ -10,12 +10,20 @@ type NewsGeneralZoneType = {
     addPost: (postMessage: string) => void
     newPostText: string
     updateNewPostText: (userMessage: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 const NewsGeneralZone = (props: NewsGeneralZoneType) => {
 
+    // let showPost = props.userPosts.map(p => (
     let showPost = props.userPosts.map(p => (
-        <UserPosts id={p.id} userName={p.name} message={p.message} likeCounts={p.likes} key={p.id}/>)
+        <UserPosts
+            id={p.id}
+            userName={p.name}
+            message={p.message}
+            likeCounts={p.likes}
+            key={p.id}
+        />)
     )
 
     return (
@@ -26,9 +34,12 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
                     alt=""/>
             </div>
 
-            <NewUserMessage addPost={props.addPost}
-                            newPostText={props.newPostText}
-                            updateNewPostText={props.updateNewPostText}/>
+            <NewUserMessage
+                newPostText={props.newPostText}
+                dispatch={props.dispatch}
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
+            />
             <div className={style.userPost}>
                 {showPost}
             </div>

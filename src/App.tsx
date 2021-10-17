@@ -10,13 +10,14 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {RootStateType} from "./redux/state";
+import {ActionTypes, RootStateType} from "./redux/state";
 import Friends from "./components/Friends/Friends";
 
 type AppPropsType = {
     state: RootStateType
     addPost: (postMessage: string) => void
     updateNewPostText: (userMessage: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 
@@ -39,8 +40,10 @@ const App = (props: AppPropsType) => {
                         <NewsGeneralZone
                             userPosts={posts}
                             addPost={props.addPost}
+                            dispatch={props.dispatch}
                             newPostText={newPostText}
-                            updateNewPostText={props.updateNewPostText}/>}/>
+                            updateNewPostText={props.updateNewPostText}
+                        />}/>
                     <Route path="/dialogs" render={() => <Dialogs dialog={dialog} message={message}/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>

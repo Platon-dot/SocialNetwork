@@ -1,6 +1,7 @@
 import React from "react";
 import style from './userPosts.module.css';
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
+import {ActionTypes} from "../../../redux/state";
 
 export type UserPostsPropsType = {
     userName: string
