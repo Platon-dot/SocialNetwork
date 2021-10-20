@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import style from './NewUserMessage.module.css';
 import {ActionTypes} from "../../../redux/state";
+import {addPostAC, onPostChangeAC} from "../../../redux/profile-reducer";
 
 
 type NewMessageType = {
@@ -10,16 +11,16 @@ type NewMessageType = {
     dispatch: (action: ActionTypes) => void
 }
 
-
 const NewUserMessage = (props: NewMessageType) => {
 
     const addPost = () => {
-        props.dispatch({type: "ADD_POST", newPostText: props.newPostText})
+        props.dispatch(addPostAC(props.newPostText))
+        props.dispatch(onPostChangeAC(''))
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        props.dispatch({type: "UPDATE_NEW_POST_TEXT", newPostText: text})
+        props.dispatch(onPostChangeAC(text))
     }
     return (
         <div className={style.newPost}>

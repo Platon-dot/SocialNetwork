@@ -1,33 +1,38 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import style from './NewDialogMessage.module.css';
+import {ActionTypes} from "../../../../redux/state";
+import {sendMessageAC, updateNewMessageBodyAC} from "../../../../redux/dialogs-reducer";
 
 
-// type MessageType = {
-//     message: string
-// }
 
-const NewDialogMessage = () => {
+type MessageType = {
+    dispatch: (action: ActionTypes) => void
+}
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+const NewDialogMessage = (props: MessageType) => {
 
-    const addMessage = () => {
-        alert(newMessageElement.current?.value)
+    const addMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = (e.currentTarget.value)
+        props.dispatch(updateNewMessageBodyAC(body))
+    }
+
+    const sendNewMessageHandler = () => {
+        props.dispatch(sendMessageAC())
     }
 
     return (
         <div className={style.newMessage}>
 
             <div className={style.userTextArea}>
-                    <textarea className={style.newDialogMessage}
-                              ref={newMessageElement}
-                              name="message"
-                              cols={30}
-                              rows={10}
-                              placeholder="What's on your mind?">
+                    <textarea
+                        className={style.newDialogMessage}
+                        onChange={addMessageHandler}
+                        name="message"
+                        placeholder="What's on your mind?">
                     </textarea>
             </div>
             <button className={style.buttonNewMessage}
-                    onClick={addMessage}>
+                    onClick={sendNewMessageHandler}>
                 New message
             </button>
         </div>

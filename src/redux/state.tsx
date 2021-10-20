@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import profileReducer, {addPostAC, onPostChangeAC} from "./profile-reducer";
+import dialogsReducer, {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 
 
 export type PostsType = {
@@ -18,14 +20,15 @@ export type MessagesType = {
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     userPosts: Array<PostsType>
     newPostText: string
 }
 
-type DialogsPageTypes = {
+export type DialogsPageTypes = {
     dialogsData: Array<DialogsType>
     messagesData: Array<MessagesType>
+    newMessageBody: string
 }
 
 export type RootStateType = {
@@ -43,17 +46,33 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionTypes = AddPostActionType |
+    ChangeNewTextActionType |
+    addNewMessageToDialogType |
+    pushNewDialogMessageType
 
-type AddPostActionType = {
-    type: "ADD_POST"
-    newPostText: string
-}
 
-type ChangeNewTextActionType = {
-    type: "UPDATE_NEW_POST_TEXT"
-    newPostText: string
-}
+const ADD_POST = "ADD_POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+const SEND_MESSAGE = "SEND_MESSAGE"
+
+type AddPostActionType = ReturnType<typeof addPostAC>
+// export type AddPostActionType = {
+//     type: "ADD_POST"
+//     newPostText: string
+// }
+
+type ChangeNewTextActionType = ReturnType<typeof onPostChangeAC>
+// type ChangeNewTextActionType = {
+//     type: "UPDATE_NEW_POST_TEXT"
+//     newPostText: string
+// }
+
+type addNewMessageToDialogType = ReturnType<typeof sendMessageAC>
+
+type pushNewDialogMessageType = ReturnType<typeof updateNewMessageBodyAC>
 
 export const store: StoreType = {
     _state: {
@@ -78,7 +97,8 @@ export const store: StoreType = {
                 {id: v1(), message: "Hello, how is your IT-KAMASUTRA"},
                 {id: v1(), message: "Hello, que tal es tu IT-KAMASUTRA"},
                 {id: v1(), message: "Привет, как твоя IT-KAMASUTRA"}
-            ]
+            ],
+            newMessageBody: ""
         }
     },
     _onChange() {
@@ -105,23 +125,12 @@ export const store: StoreType = {
         this._state.profilePage.newPostText = ""
         this._onChange()
     },
+
+
     dispatch(action) {
-        if (action.type === "ADD_POST") {
-            // this._addPost()
-            const newPost: PostsType = {
-                id: v1(),
-                name: "Sonia",
-                message: this._state.profilePage.newPostText,
-                likes: 0
-            };
-            this._state.profilePage.userPosts.unshift(newPost);
-            this._state.profilePage.newPostText = ""
-            this._onChange()
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
-            // this._updateNewPostText(action.newPostText)
-            this._state.profilePage.newPostText = action.newPostText
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._onChange()
     }
 }
 

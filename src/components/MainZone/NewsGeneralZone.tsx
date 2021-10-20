@@ -18,11 +18,11 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
     // let showPost = props.userPosts.map(p => (
     let showPost = props.userPosts.map(p => (
         <UserPosts
+            key={p.id}
             id={p.id}
             userName={p.name}
             message={p.message}
             likeCounts={p.likes}
-            key={p.id}
         />)
     )
 

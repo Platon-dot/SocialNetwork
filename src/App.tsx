@@ -25,8 +25,8 @@ const App = (props: AppPropsType) => {
     let posts = props.state.profilePage.userPosts
     let dialog = props.state.dialogsPage.dialogsData
     let message = props.state.dialogsPage.messagesData
-    let  newPostText = props.state.profilePage.newPostText
-
+    let newPostText = props.state.profilePage.newPostText
+debugger
 
     return (
 
@@ -44,7 +44,12 @@ const App = (props: AppPropsType) => {
                             newPostText={newPostText}
                             updateNewPostText={props.updateNewPostText}
                         />}/>
-                    <Route path="/dialogs" render={() => <Dialogs dialog={dialog} message={message}/>}/>
+                    <Route path="/dialogs" render={() =>
+                        <Dialogs
+                            dialog={dialog}
+                            message={message}
+                            dispatch={props.dispatch}/>}
+                    />
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
