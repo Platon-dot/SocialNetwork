@@ -26,10 +26,8 @@ const App = (props: AppPropsType) => {
     let dialog = props.state.dialogsPage.dialogsData
     let message = props.state.dialogsPage.messagesData
     let newPostText = props.state.profilePage.newPostText
-debugger
 
     return (
-
         <div className="backgroundZone">
             <Route component={Header}/>
             <div className="socialPage">

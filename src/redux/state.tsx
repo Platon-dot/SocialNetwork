@@ -74,7 +74,7 @@ type addNewMessageToDialogType = ReturnType<typeof sendMessageAC>
 
 type pushNewDialogMessageType = ReturnType<typeof updateNewMessageBodyAC>
 
-export const store: StoreType = {
+export const state: StoreType = {
     _state: {
         profilePage: {
             userPosts: [
@@ -134,6 +134,6 @@ export const store: StoreType = {
     }
 }
 
-export default store;
+export default state;
 
 

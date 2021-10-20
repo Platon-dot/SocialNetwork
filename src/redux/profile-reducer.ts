@@ -20,7 +20,7 @@ const profileReducer = (state: ProfilePageType, action: any): ProfilePageType =>
             //return copyState
             return {
                 ...state,
-                // userPosts: [newPost, ...state.userPosts]
+                userPosts: [newPost, ...state.userPosts]
             }
         }
         case UPDATE_NEW_POST_TEXT: {

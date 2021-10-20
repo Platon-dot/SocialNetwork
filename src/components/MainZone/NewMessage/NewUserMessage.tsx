@@ -20,6 +20,7 @@ const NewUserMessage = (props: NewMessageType) => {
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
+        console.log(text)
         props.dispatch(onPostChangeAC(text))
     }
     return (
