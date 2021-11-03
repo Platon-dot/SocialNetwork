@@ -8,7 +8,7 @@ type NewMessageType = {
     updateNewPostText: (userMessage: string) => void
 }
 
-const NewUserMessage = (props: NewMessageType) => {
+const  NewUserMessage = (props: NewMessageType) => {
 
     const addPostHandler = () => {
         props.addPost()
@@ -16,9 +16,7 @@ const NewUserMessage = (props: NewMessageType) => {
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        console.log(text)
-        props.updateNewPostText(text)
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -26,7 +24,7 @@ const NewUserMessage = (props: NewMessageType) => {
             <div className={style.lineNewPost}>
                 <a href="#" className={style.lineNewPost}>
                     <i className={style.logoNewPost}/>
-                    <button onClick={addPostHandler}>Create Post</button>
+                    <button onClick={addPostHandler}>Add post</button>
                 </a>
             </div>
             <div className={style.userTextArea}>

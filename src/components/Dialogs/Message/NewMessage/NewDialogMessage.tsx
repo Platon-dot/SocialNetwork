@@ -3,10 +3,8 @@ import style from './NewDialogMessage.module.css';
 import {sendMessageAC, updateNewMessageBodyAC} from "../../../../redux/dialogs-reducer";
 import {useDispatch} from "react-redux";
 
-type MessageType = {
-}
 
-const NewDialogMessage = (props: MessageType) => {
+const NewDialogMessage = () => {
 
     let dispatch = useDispatch()
 

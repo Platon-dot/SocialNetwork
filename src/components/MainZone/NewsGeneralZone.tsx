@@ -2,7 +2,6 @@ import React from "react";
 import style from './NewsGeneralZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import { PostsType} from "../../redux/state";
 import {useDispatch, useSelector} from "react-redux";
 import {addPostAC, onPostChangeAC} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
