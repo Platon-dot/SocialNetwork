@@ -1,13 +1,45 @@
 import {v1} from "uuid";
-import {PostsType, ProfilePageType} from "./state";
+
+type ProfileActionType = addPostActionType | onPostChangeActionType
+
+
+type addPostActionType = {
+    type: "ADD_POST",
+}
+
+type onPostChangeActionType = {
+    type: "UPDATE_NEW_POST_TEXT",
+    newPostText: string
+}
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 
-const profileReducer = (state: ProfilePageType, action: any): ProfilePageType => {
+export type PostsType = {
+    id: string
+    name: string
+    message: string
+    likes: number
+}
+
+export type ProfilePageType = {
+    userPosts: Array<PostsType>
+    newPostText: string
+}
+
+const initialState = {
+    userPosts: [
+        {id: v1(), name: "Juan", message: "Privet Alinka", likes: 48},
+        {id: v1(), name: "Jenifer", message: "Hi bratishka", likes: 35},
+        {id: v1(), name: "Katia", message: "Hola Joan", likes: 65},
+    ],
+    newPostText: ""
+}
+
+
+const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
 
     switch (action.type) {
-        //let copyState = {...state}
         case ADD_POST : {
             const newPost: PostsType = {
                 id: v1(),
@@ -15,17 +47,12 @@ const profileReducer = (state: ProfilePageType, action: any): ProfilePageType =>
                 message: state.newPostText,
                 likes: 0
             };
-            //copyState.userPosts.push(newPost);
-            //copyState.newPostText = ""
-            //return copyState
             return {
                 ...state,
                 userPosts: [newPost, ...state.userPosts]
             }
         }
         case UPDATE_NEW_POST_TEXT: {
-            //copyState.newPostText = action.newPostText
-            //return copyState
             return {
                 ...state,
                 newPostText: action.newPostText
@@ -37,14 +64,13 @@ const profileReducer = (state: ProfilePageType, action: any): ProfilePageType =>
 };
 
 
-export const addPostAC = (newPostText: string) => {
+export const addPostAC = (): addPostActionType => {
     return {
         type: ADD_POST,
-        newPostText: newPostText
     } as const
 }
 
-export const onPostChangeAC = (newPostText: string) => {
+export const onPostChangeAC = (newPostText: string): onPostChangeActionType => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newPostText: newPostText

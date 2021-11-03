@@ -2,21 +2,33 @@ import React from "react";
 import style from './NewsGeneralZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import {ActionTypes, PostsType} from "../../redux/state";
+import { PostsType} from "../../redux/state";
+import {useDispatch, useSelector} from "react-redux";
+import {addPostAC, onPostChangeAC} from "../../redux/profile-reducer";
+import {RootStateType} from "../../redux/redux-store";
 
 
 type NewsGeneralZoneType = {
-    userPosts: Array<PostsType>
-    addPost: (postMessage: string) => void
-    newPostText: string
-    updateNewPostText: (userMessage: string) => void
-    dispatch: (action: ActionTypes) => void
+
 }
 
 const NewsGeneralZone = (props: NewsGeneralZoneType) => {
 
+    const dispatch = useDispatch()
+
+    const newPostText = useSelector((state: RootStateType) => state.profileReducer.newPostText)
+    const userPosts = useSelector((state: RootStateType) => state.profileReducer.userPosts)
+
+    const addPost = () => {
+        dispatch(addPostAC())
+    }
+
+    const updateNewPostText = (value: string) => {
+        dispatch(onPostChangeAC(value))
+    }
+
     // let showPost = props.userPosts.map(p => (
-    let showPost = props.userPosts.map(p => (
+    let showPost = userPosts.map(p => (
         <UserPosts
             key={p.id}
             id={p.id}
@@ -35,10 +47,9 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
             </div>
 
             <NewUserMessage
-                newPostText={props.newPostText}
-                dispatch={props.dispatch}
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
+                newPostText={newPostText}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
             />
             <div className={style.userPost}>
                 {showPost}

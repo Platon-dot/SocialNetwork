@@ -1,23 +1,22 @@
 import React, {ChangeEvent} from "react";
 import style from './NewDialogMessage.module.css';
-import {ActionTypes} from "../../../../redux/state";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../../../redux/dialogs-reducer";
-
-
+import {useDispatch} from "react-redux";
 
 type MessageType = {
-    dispatch: (action: ActionTypes) => void
 }
 
 const NewDialogMessage = (props: MessageType) => {
 
+    let dispatch = useDispatch()
+
     const addMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = (e.currentTarget.value)
-        props.dispatch(updateNewMessageBodyAC(body))
+        dispatch(updateNewMessageBodyAC(body))
     }
 
     const sendNewMessageHandler = () => {
-        props.dispatch(sendMessageAC())
+        dispatch(sendMessageAC())
     }
 
     return (

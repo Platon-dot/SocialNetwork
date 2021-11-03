@@ -10,23 +10,25 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {ActionTypes, RootStateType} from "./redux/state";
 import Friends from "./components/Friends/Friends";
+import {RootStateType} from "./redux/redux-store";
+
 
 type AppPropsType = {
     state: RootStateType
-    addPost: (postMessage: string) => void
-    updateNewPostText: (userMessage: string) => void
-    dispatch: (action: ActionTypes) => void
+    // addPost: (postMessage: string) => void
+    // updateNewPostText: (userMessage: string) => void
+    // dispatch: (action: ActionTypes) => void
 }
 
 
 const App = (props: AppPropsType) => {
-    let posts = props.state.profilePage.userPosts
-    let dialog = props.state.dialogsPage.dialogsData
-    let message = props.state.dialogsPage.messagesData
-    let newPostText = props.state.profilePage.newPostText
 
+    // let dialog = useSelector((state: RootStateType)=> state.dialogsReducer.dialogsData)
+    // let message = useSelector((state:RootStateType)=> state.dialogsReducer.messagesData)
+    let dialog = props.state.dialogsReducer.dialogsData
+    //let message = props.state.dialogsReducer.messagesData
+    console.log(props.state.dialogsReducer.messagesData)
     return (
         <div className="backgroundZone">
             <Route component={Header}/>
@@ -34,19 +36,12 @@ const App = (props: AppPropsType) => {
                 <Route component={LeftMenuBar}/>
                 <Route component={Friends}/>
                 <div className="socialPageContent">
-                    <Route path="/theWall" render={() =>
-                        <NewsGeneralZone
-                            userPosts={posts}
-                            addPost={props.addPost}
-                            dispatch={props.dispatch}
-                            newPostText={newPostText}
-                            updateNewPostText={props.updateNewPostText}
-                        />}/>
+                    <Route path="/theWall" component={NewsGeneralZone}/>
                     <Route path="/dialogs" render={() =>
                         <Dialogs
                             dialog={dialog}
-                            message={message}
-                            dispatch={props.dispatch}/>}
+                            message={props.state.dialogsReducer.messagesData}
+                        />}
                     />
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
