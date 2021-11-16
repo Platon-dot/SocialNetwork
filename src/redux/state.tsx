@@ -3,12 +3,12 @@ import profileReducer, {addPostAC, onPostChangeAC} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 
 
-export type PostsType = {
-    id: string
-    name: string
-    message: string
-    likes: number
-}
+// export type PostsType = {
+//     id: string
+//     name: string
+//     message: string
+//     likes: number
+// }
 //
 // export type DialogsType = {
 //     id: string

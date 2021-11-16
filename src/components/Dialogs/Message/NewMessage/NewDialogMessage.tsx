@@ -9,8 +9,7 @@ const NewDialogMessage = () => {
     let dispatch = useDispatch()
 
     const addMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = (e.currentTarget.value)
-        dispatch(updateNewMessageBodyAC(body))
+        dispatch(updateNewMessageBodyAC(e.currentTarget.value))
     }
 
     const sendNewMessageHandler = () => {

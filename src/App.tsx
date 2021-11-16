@@ -12,6 +12,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import {RootStateType} from "./redux/redux-store";
+import {useDispatch} from "react-redux";
 
 
 type AppPropsType = {
@@ -24,11 +25,10 @@ type AppPropsType = {
 
 const App = (props: AppPropsType) => {
 
-    // let dialog = useSelector((state: RootStateType)=> state.dialogsReducer.dialogsData)
-    // let message = useSelector((state:RootStateType)=> state.dialogsReducer.messagesData)
     let dialog = props.state.dialogsReducer.dialogsData
-    //let message = props.state.dialogsReducer.messagesData
-    console.log(props.state.dialogsReducer.messagesData)
+
+    // console.log(props.state.dialogsReducer.messagesData)
+
     return (
         <div className="backgroundZone">
             <Route component={Header}/>
