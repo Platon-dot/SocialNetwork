@@ -36,9 +36,9 @@ const initialState = {
         {id: v1(), name: "Platon"},
         {id: v1(), name: "Alina"},
         {id: v1(), name: "Anna"},
-        {id: v1(), name: "Sveta"},
-        {id: v1(), name: "Sasha"},
-        {id: v1(), name: "Velery"},
+        // {id: v1(), name: "Sveta"},
+        // {id: v1(), name: "Sasha"},
+        // {id: v1(), name: "Velery"},
     ],
     messagesData: [
         {id: v1(), message: "Hello, how is your IT-KAMASUTRA"},
@@ -53,19 +53,15 @@ const dialogsReducer = (state: DialogsPageTypes = initialState, action: DialogsA
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY: {
-            // let copyState = {...state}
-            // copyState.newMessageBody = action.body
             return {
                 ...state, newMessageBody: action.body
             }
-            // ({...copyState})
 
         }
         case SEND_MESSAGE: {
             return {
                 ...state,
                 messagesData: [...state.messagesData, {id: v1(), message: state.newMessageBody}],
-                newMessageBody: ''
             }
         }
         default:

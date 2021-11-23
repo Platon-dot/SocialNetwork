@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 
-type ProfileActionType = addPostActionType | onPostChangeActionType
+export type ProfileActionType = addPostActionType | onPostChangeActionType
 
 
 type addPostActionType = {
@@ -37,7 +37,7 @@ const initialState = {
 }
 
 
-const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
 
     switch (action.type) {
         case ADD_POST : {

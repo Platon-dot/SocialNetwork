@@ -3,8 +3,11 @@ import style from './NewDialogMessage.module.css';
 import {sendMessageAC, updateNewMessageBodyAC} from "../../../../redux/dialogs-reducer";
 import {useDispatch} from "react-redux";
 
+type NewDialogMessageType = {
+    newMessage: string
+}
 
-const NewDialogMessage = () => {
+const NewDialogMessage = (props: NewDialogMessageType) => {
 
     let dispatch = useDispatch()
 
@@ -14,6 +17,7 @@ const NewDialogMessage = () => {
 
     const sendNewMessageHandler = () => {
         dispatch(sendMessageAC())
+        dispatch(updateNewMessageBodyAC(""))
     }
 
     return (
@@ -24,7 +28,9 @@ const NewDialogMessage = () => {
                         className={style.newDialogMessage}
                         onChange={addMessageHandler}
                         name="message"
-                        placeholder="What's on your mind?">
+                        placeholder="What's on your mind?"
+                        value={props.newMessage}
+                    >
                     </textarea>
             </div>
             <button className={style.buttonNewMessage}

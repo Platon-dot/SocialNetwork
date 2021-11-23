@@ -19,6 +19,7 @@ const  NewUserMessage = (props: NewMessageType) => {
         props.updateNewPostText(e.currentTarget.value)
     }
 
+
     return (
         <div className={style.newPost}>
             <div className={style.lineNewPost}>

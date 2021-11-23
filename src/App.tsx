@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/header";
 import LeftMenuBar from "./components/LeftMenuBar/LeftMenuBar";
-import NewsGeneralZone from "./components/MainZone/NewsGeneralZone";
+import ProfileZone from "./components/ProfileZone/ProfileZone";
 import SettingsBox from "./components/Settings/SettingsBox";
 import Footer from "./components/Footer/Footer";
 import {Route} from "react-router-dom";
@@ -12,22 +12,16 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import {RootStateType} from "./redux/redux-store";
-import {useDispatch} from "react-redux";
+import { useSelector} from "react-redux";
+import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
+import Users from "./components/Users/Users";
 
 
-type AppPropsType = {
-    state: RootStateType
-    // addPost: (postMessage: string) => void
-    // updateNewPostText: (userMessage: string) => void
-    // dispatch: (action: ActionTypes) => void
-}
-
-
-const App = (props: AppPropsType) => {
-
-    let dialog = props.state.dialogsReducer.dialogsData
-
-    // console.log(props.state.dialogsReducer.messagesData)
+const App = () => {
+    let dialog = useSelector<RootStateType, DialogsType[]>(state =>
+        state.dialogsReducer.dialogsData)
+    let message = useSelector<RootStateType, MessagesType[]>(state =>
+        state.dialogsReducer.messagesData)
 
     return (
         <div className="backgroundZone">
@@ -36,13 +30,14 @@ const App = (props: AppPropsType) => {
                 <Route component={LeftMenuBar}/>
                 <Route component={Friends}/>
                 <div className="socialPageContent">
-                    <Route path="/theWall" component={NewsGeneralZone}/>
+                    <Route path="/profile" component={ProfileZone}/>
                     <Route path="/dialogs" render={() =>
                         <Dialogs
                             dialog={dialog}
-                            message={props.state.dialogsReducer.messagesData}
+                            message={message}
                         />}
                     />
+                    <Route path="/users" component={Users}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>

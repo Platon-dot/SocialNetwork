@@ -19,7 +19,7 @@ const LeftMenuBar = () => {
             <div className={style.itemLink}>
                 <img className={style.iconMenu} src={newsfeed} alt=""/>
                 <span className={style.linkName}>
-                    <NavLink to="/theWall" activeClassName={style.activeLink}>
+                    <NavLink to="/profile" activeClassName={style.activeLink}>
                         News page
                     </NavLink>
                 </span>
@@ -29,6 +29,14 @@ const LeftMenuBar = () => {
                 <span className={style.linkName}>
                     <NavLink to="/dialogs" activeClassName={style.activeLink}>
                     Dialogs
+                </NavLink>
+                </span>
+            </div>
+            <div className={style.itemLink}>
+                <img className={style.iconMenu} src={badges} alt=""/>
+                <span className={style.linkName}>
+                    <NavLink to="/users" activeClassName={style.activeLink}>
+                    Users
                 </NavLink>
                 </span>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import style from './NewsGeneralZone.module.css';
+import style from './ProfileZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
 import {useDispatch, useSelector} from "react-redux";
@@ -7,11 +7,7 @@ import {addPostAC, onPostChangeAC} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
 
 
-type NewsGeneralZoneType = {
-
-}
-
-const NewsGeneralZone = (props: NewsGeneralZoneType) => {
+const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
@@ -25,8 +21,6 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
     const updateNewPostText = (value: string) => {
         dispatch(onPostChangeAC(value))
     }
-
-    // let showPost = props.userPosts.map(p => (
     let showPost = userPosts.map(p => (
         <UserPosts
             key={p.id}
@@ -41,8 +35,9 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
         <div>
             <div className={style.image_for_news}>
                 <img
-                    src="https://img.freepik.com/free-vector/hands-holding-earphones-communicate-in-instant-messengers-by-voice-messages-audio-chat-application-social-media-online-communication-concept-horizontal-vector-illustration_48369-36729.jpg?size=626&ext=jpg&ga=GA1.2.1719178491.1616889600"
-                    alt=""/>
+                    // src="/src/img/mainImage.jpg"
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/2c/The_social_network.svg"
+                    alt="logo"/>
             </div>
 
             <NewUserMessage
@@ -57,4 +52,4 @@ const NewsGeneralZone = (props: NewsGeneralZoneType) => {
     )
 }
 
-export default NewsGeneralZone
+export default ProfileZone
