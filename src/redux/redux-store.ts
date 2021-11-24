@@ -2,11 +2,13 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import {sideBarReducer} from "./sidebar-reducer";
+import {usersReducer} from "./users-reducer";
 
 let reducersSet = combineReducers({
     profileReducer: profileReducer,
     dialogsReducer: dialogsReducer,
-    sideBarReducer: sideBarReducer
+    sideBarReducer: sideBarReducer,
+    usersReducer: usersReducer
 })
 
 export type RootStateType = ReturnType<typeof reducersSet>

@@ -4,40 +4,44 @@ type UsersLocationType = {
     city: string,
     country: string
 }
-type UserType = {
-    id: string;
+export type UserType = {
+    id: string,
+    avatarUrl: string,
     followed: boolean,
     fullName: string,
     status: string,
     location: UsersLocationType
 }
-type UsersPageType = {
+export type UsersPageType = {
     users: UserType[]
 }
 
 const initialState: UsersPageType = {
     users: [
-        // {
-        //     id: v1(),
-        //     followed: false,
-        //     fullName: 'Alexey',
-        //     status: 'I am a boss',
-        //     location: {city: 'Barcelona', country: 'Spain'}
-        // },
-        // {
-        //     id: v1(),
-        //     followed: true,
-        //     fullName: 'Albert',
-        //     status: 'I am a subordinate',
-        //     location: {city: 'Madrid', country: 'Spain'}
-        // },
-        // {
-        //     id: v1(),
-        //     followed: false,
-        //     fullName: 'Joan',
-        //     status: 'I am a boss too',
-        //     location: {city: 'Valencia', country: 'Spain'}
-        // },
+        {
+            id: v1(),
+            avatarUrl: 'http://uitheme.net/sociala/images/user_2.png',
+            followed: false,
+            fullName: 'Marta',
+            status: 'I am a boss',
+            location: {city: 'Barcelona', country: 'Spain'}
+        },
+        {
+            id: v1(),
+            avatarUrl: 'http://uitheme.net/sociala/images/user-22.png',
+            followed: true,
+            fullName: 'Abdula',
+            status: 'I am a subordinate',
+            location: {city: 'Madrid', country: 'Spain'}
+        },
+        {
+            id: v1(),
+            avatarUrl: 'http://uitheme.net/sociala/images/user_1.png',
+            followed: false,
+            fullName: 'Joan',
+            status: 'Deniska',
+            location: {city: 'Valencia', country: 'Spain'}
+        },
     ]
 }
 
@@ -78,7 +82,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersA
 
 export const followAC = (userId: string) => ({type: 'FOLLOW-USERS', userId} as const)
 export const unFollowAC = (userId: string) => ({type: 'UNFOLLOW-USERS', userId} as const)
-export const setUsersAC = (users: any) => ({type: 'SET-USERS', users} as const)
+export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users} as const)
 
 export type UsersActionType = followACActionType | unFollowACActionType | setUsersActionType
 type followACActionType = ReturnType<typeof followAC>

@@ -5,35 +5,34 @@ import {v1} from "uuid";
 type bestFriendsTypes = {
     id: string
     name: string
+    imgOfBestFriend: string
 }
 
-const Friends = (props: bestFriendsTypes) => {
-
-    let bestFriends = [
-        {id: v1(), name: "Stefania"},
-        {id: v1(), name: "Lina"},
-        {id: v1(), name: "Kris"}
+const Friends = React.memo(() => {
+    let bestFriends: bestFriendsTypes[] = [
+        {id: v1(), name: "Stefania", imgOfBestFriend: "http://uitheme.net/sociala/images/user-9.png"},
+        {id: v1(), name: "Victor", imgOfBestFriend: "http://uitheme.net/sociala/images/user-2.png"},
+        {id: v1(), name: "John", imgOfBestFriend: "http://uitheme.net/sociala/images/user-3.png"}
     ]
 
     return (
         <div className={style.friendsMain}>
             <h5 className={style.titleFriends}>Friends</h5>
             <div className={style.bestFriendMain}>
-                <div className={style.bestFriend}>
-                    <img className={style.imgOfBestFriend} src="http://uitheme.net/sociala/images/user-9.png" alt=""/>
-                    <span className={style.friendNames}>{bestFriends[0].name}</span>
-                </div>
-                <div className={style.bestFriend}>
-                    <img className={style.imgOfBestFriend} src="http://uitheme.net/sociala/images/user-9.png" alt=""/>
-                    <span className={style.friendNames}>{bestFriends[1].name}</span>
-                </div>
-                <div className={style.bestFriend}>
-                    <img className={style.imgOfBestFriend} src="http://uitheme.net/sociala/images/user-9.png" alt=""/>
-                    <span className={style.friendNames}>{bestFriends[2].name}</span>
-                </div>
+                {bestFriends.map(friends => {
+                    return (
+                        <div className={style.bestFriend} key={friends.id}>
+                            <img className={style.imgOfBestFriend} src={friends.imgOfBestFriend}
+                                 alt="as"/>
+                            <span className={style.friendNames}>{friends.name}</span>
+                        </div>
+                    )
+                })}
+                <div/>
             </div>
         </div>
+
     )
-}
+})
 
 export default Friends
