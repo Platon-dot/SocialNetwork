@@ -1,61 +1,50 @@
-import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI, UsersResponseType, UsersType} from "../api/users-api";
 
-type UsersLocationType = {
-    city: string,
-    country: string
-}
-export type UserType = {
-    id: string,
-    avatarUrl: string,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: UsersLocationType
-}
-export type UsersPageType = {
-    users: UserType[]
-}
 
-const initialState: UsersPageType = {
-    users: [
-        {
-            id: v1(),
-            avatarUrl: 'http://uitheme.net/sociala/images/user_2.png',
-            followed: false,
-            fullName: 'Marta',
-            status: 'I am a boss',
-            location: {city: 'Barcelona', country: 'Spain'}
-        },
-        {
-            id: v1(),
-            avatarUrl: 'http://uitheme.net/sociala/images/user-22.png',
-            followed: true,
-            fullName: 'Abdula',
-            status: 'I am a subordinate',
-            location: {city: 'Madrid', country: 'Spain'}
-        },
-        {
-            id: v1(),
-            avatarUrl: 'http://uitheme.net/sociala/images/user_1.png',
-            followed: false,
-            fullName: 'Joan',
-            status: 'Deniska',
-            location: {city: 'Valencia', country: 'Spain'}
-        },
-    ]
+const initialState: UsersResponseType = {
+    items: [],
+    totalCount: 0,
+    error: ''
 }
+//     {
+//         id: v1(),
+//         avatarUrl: 'http://uitheme.net/sociala/images/user_2.png',
+//         followed: false,
+//         fullName: 'Marta',
+//         status: 'I am a boss',
+//         location: {city: 'Barcelona', country: 'Spain'}
+//     },
+//     {
+//         id: v1(),
+//         avatarUrl: 'http://uitheme.net/sociala/images/user-22.png',
+//         followed: true,
+//         fullName: 'Abdula',
+//         status: 'I am a subordinate',
+//         location: {city: 'Madrid', country: 'Spain'}
+//     },
+//     {
+//         id: v1(),
+//         avatarUrl: 'http://uitheme.net/sociala/images/user_1.png',
+//         followed: false,
+//         fullName: 'Joan',
+//         status: 'I am somebody',
+//         location: {city: 'Valencia', country: 'Spain'}
+//     },
 
-export const usersReducer = (state: UsersPageType = initialState, action: UsersActionType): UsersPageType => {
+
+
+export const usersReducer = (state: UsersResponseType = initialState, action: UsersActionType): UsersResponseType => {
     switch (action.type) {
         case 'SET-USERS':
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                items: action.arrayUsers
             }
         case 'FOLLOW-USERS': {
             return {
                 ...state,
-                users: state.users.map(u => {
+                items: state.items.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
@@ -66,7 +55,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersA
         case 'UNFOLLOW-USERS': {
             return {
                 ...state,
-                users: state.users.map(u => {
+                items: state.items.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
@@ -79,12 +68,24 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersA
     }
 };
 
+export const setUsersAC = (arrayUsers: UsersType[]) => ({type: 'SET-USERS', arrayUsers} as const)
+export const followAC = (userId: number) => ({type: 'FOLLOW-USERS', userId} as const)
+export const unFollowAC = (userId: number) => ({type: 'UNFOLLOW-USERS', userId} as const)
 
-export const followAC = (userId: string) => ({type: 'FOLLOW-USERS', userId} as const)
-export const unFollowAC = (userId: string) => ({type: 'UNFOLLOW-USERS', userId} as const)
-export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users} as const)
 
-export type UsersActionType = followACActionType | unFollowACActionType | setUsersActionType
+export type UsersActionType =
+    followACActionType |
+    unFollowACActionType |
+    setUsersActionType
+
 type followACActionType = ReturnType<typeof followAC>
 type unFollowACActionType = ReturnType<typeof unFollowAC>
 type setUsersActionType = ReturnType<typeof setUsersAC>
+
+
+export const setUsersTC = (dispatch: Dispatch) => {
+    usersAPI.getUsers()
+        .then((res) => {
+            dispatch(setUsersAC(res.data.items))
+        })
+}

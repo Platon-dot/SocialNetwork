@@ -1,63 +1,69 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {followAC, setUsersAC, unFollowAC, UserType} from "../../redux/users-reducer";
+import {followAC, setUsersAC, setUsersTC, unFollowAC} from "../../redux/users-reducer";
 import styles from './Users.module.css'
+import {usersAPI, UsersType} from "../../api/users-api";
 
 const Users = () => {
-
     let dispatch = useDispatch()
-    let users = useSelector((state: RootStateType) => state.usersReducer.users)
 
-    const followHandler = (userId: string) => {
+    useEffect(() => {
+        dispatch(setUsersTC)
+    }, [])
+
+    let users = useSelector<RootStateType, UsersType[]>(
+        (state) => state.usersReducer.items)
+    console.log(users)
+
+    const followHandler = (userId: number) => {
         dispatch(followAC(userId))
     }
-    const unFollowHandler = (userId: string) => {
+    const unFollowHandler = (userId: number) => {
         dispatch(unFollowAC(userId))
     }
-    const setUsers = (users: UserType[]) => {
+    const setUsers = (users: UsersType[]) => {
         dispatch(setUsersAC(users))
     }
 
     return (
         <>
             {
-                users.map(userMap => {
+                users.map(userT => {
                     return (
-                        <div key={userMap.id}>
+                        <div key={userT.id}>
                             <span>
                                 <div>
                                     <img
-                                        src={userMap.avatarUrl}
+                                        src={userT.photos.small}
                                         alt='avatar'
                                         className={styles.userPhoto}/>
                                 </div>
                                 <div className={styles.buttonBlock}>
-                                    {!userMap.followed ?
+                                    {!userT.followed ?
                                         <button
                                             className={styles.userButton}
-                                            onClick={() => followHandler(userMap.id)}>
+                                            onClick={() => followHandler(userT.id)}>
                                             FOLLOW
                                         </button>
                                         :
                                         <button
                                             className={styles.userButton}
-                                            onClick={() => unFollowHandler(userMap.id)}>
+                                            onClick={() => unFollowHandler(userT.id)}>
                                             UNFOLLOW
                                         </button>
                                     }
-
                                 </div>
                             </span>
                             <span>
                                 <span>
-                                    <div>{userMap.fullName}</div>
-                                    <div>{userMap.status}</div>
+                                    <div>{userT.name}</div>
+                                    <div>{userT.status}</div>
                                 </span>
-                                <span>
-                                    <div>{userMap.location.city}</div>
-                                    <div>{userMap.location.country}</div>
-                                </span>
+                                {/*<span>*/}
+                                {/*    <div>{userT.}</div>*/}
+                                {/*    <div>{userT.location.country}</div>*/}
+                                {/*</span>*/}
                             </span>
                         </div>
                     )

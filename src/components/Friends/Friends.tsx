@@ -1,6 +1,8 @@
 import React from "react";
 import style from './Friends.module.css'
 import {v1} from "uuid";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
 
 type bestFriendsTypes = {
     id: string
@@ -9,27 +11,23 @@ type bestFriendsTypes = {
 }
 
 const Friends = React.memo(() => {
-    let bestFriends: bestFriendsTypes[] = [
-        {id: v1(), name: "Stefania", imgOfBestFriend: "http://uitheme.net/sociala/images/user-9.png"},
-        {id: v1(), name: "Victor", imgOfBestFriend: "http://uitheme.net/sociala/images/user-2.png"},
-        {id: v1(), name: "John", imgOfBestFriend: "http://uitheme.net/sociala/images/user-3.png"}
-    ]
+    // const bestFriends = useSelector((state: RootStateType) => state.usersReducer.bestFriends)
 
     return (
         <div className={style.friendsMain}>
-            <h5 className={style.titleFriends}>Friends</h5>
-            <div className={style.bestFriendMain}>
-                {bestFriends.map(friends => {
-                    return (
-                        <div className={style.bestFriend} key={friends.id}>
-                            <img className={style.imgOfBestFriend} src={friends.imgOfBestFriend}
-                                 alt="as"/>
-                            <span className={style.friendNames}>{friends.name}</span>
-                        </div>
-                    )
-                })}
-                <div/>
-            </div>
+            {/*<h5 className={style.titleFriends}>Friends</h5>*/}
+            {/*<div className={style.bestFriendMain}>*/}
+            {/*    {bestFriends.map(friends => {*/}
+            {/*        return (*/}
+            {/*            <div className={style.bestFriend} key={friends.id}>*/}
+            {/*                <img className={style.imgOfBestFriend} src={friends.avatarUrl}*/}
+            {/*                     alt="as"/>*/}
+            {/*                <span className={style.friendNames}>{friends.fullName}</span>*/}
+            {/*            </div>*/}
+            {/*        )*/}
+            {/*    })}*/}
+            {/*    <div/>*/}
+            {/*</div>*/}
         </div>
 
     )
