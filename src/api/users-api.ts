@@ -14,7 +14,9 @@ export type UsersType = {
 export type UsersResponseType = {
     items: UsersType[],
     totalCount: number,
-    error: string
+    error: string,
+    pageSize: number,
+    selectedPage: number
 }
 const settings = {
     withCredentials: true,
@@ -28,7 +30,8 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers() {
-        return instance.get<UsersResponseType>('/users')
+    getUsers(selectedPage: number, count: number) {
+        // return instance.get<UsersResponseType>(`/users`)
+        return instance.get<UsersResponseType>(`/users?page=${selectedPage}&count=${count}`)
     }
 }

@@ -15,6 +15,7 @@ import {RootStateType} from "./redux/redux-store";
 import { useSelector} from "react-redux";
 import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
 import Users from "./components/Users/Users";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {

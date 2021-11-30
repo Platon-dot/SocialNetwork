@@ -5,42 +5,14 @@ import {usersAPI, UsersResponseType, UsersType} from "../api/users-api";
 const initialState: UsersResponseType = {
     items: [],
     totalCount: 0,
-    error: ''
+    error: '',
+    pageSize: 5,
+    selectedPage: 1
 }
-//     {
-//         id: v1(),
-//         avatarUrl: 'http://uitheme.net/sociala/images/user_2.png',
-//         followed: false,
-//         fullName: 'Marta',
-//         status: 'I am a boss',
-//         location: {city: 'Barcelona', country: 'Spain'}
-//     },
-//     {
-//         id: v1(),
-//         avatarUrl: 'http://uitheme.net/sociala/images/user-22.png',
-//         followed: true,
-//         fullName: 'Abdula',
-//         status: 'I am a subordinate',
-//         location: {city: 'Madrid', country: 'Spain'}
-//     },
-//     {
-//         id: v1(),
-//         avatarUrl: 'http://uitheme.net/sociala/images/user_1.png',
-//         followed: false,
-//         fullName: 'Joan',
-//         status: 'I am somebody',
-//         location: {city: 'Valencia', country: 'Spain'}
-//     },
-
-
-
 export const usersReducer = (state: UsersResponseType = initialState, action: UsersActionType): UsersResponseType => {
     switch (action.type) {
         case 'SET-USERS':
-            return {
-                ...state,
-                items: action.arrayUsers
-            }
+            return {...state, items: action.arrayUsers}
         case 'FOLLOW-USERS': {
             return {
                 ...state,
@@ -63,6 +35,10 @@ export const usersReducer = (state: UsersResponseType = initialState, action: Us
                 })
             }
         }
+        case 'TOTAL-COUNT': {
+            return {...state, totalCount: action.totalCount}}
+        case 'CHANGE-SELECTED-PAGE': {
+            return {...state, selectedPage: action.selectedPage}}
         default:
             return state
     }
@@ -71,21 +47,28 @@ export const usersReducer = (state: UsersResponseType = initialState, action: Us
 export const setUsersAC = (arrayUsers: UsersType[]) => ({type: 'SET-USERS', arrayUsers} as const)
 export const followAC = (userId: number) => ({type: 'FOLLOW-USERS', userId} as const)
 export const unFollowAC = (userId: number) => ({type: 'UNFOLLOW-USERS', userId} as const)
-
+export const setTotalCountAC = (totalCount: number) => ({type: 'TOTAL-COUNT', totalCount} as const)
+export const changeSelectedPageAC = (selectedPage: number) => ({type: 'CHANGE-SELECTED-PAGE', selectedPage} as const)
 
 export type UsersActionType =
     followACActionType |
     unFollowACActionType |
-    setUsersActionType
+    setUsersActionType |
+    setTotalCountActionType |
+    changeSelectedPageActionType
 
 type followACActionType = ReturnType<typeof followAC>
 type unFollowACActionType = ReturnType<typeof unFollowAC>
 type setUsersActionType = ReturnType<typeof setUsersAC>
+type setTotalCountActionType = ReturnType<typeof setTotalCountAC>
+type changeSelectedPageActionType = ReturnType<typeof changeSelectedPageAC>
 
-
-export const setUsersTC = (dispatch: Dispatch) => {
-    usersAPI.getUsers()
-        .then((res) => {
-            dispatch(setUsersAC(res.data.items))
-        })
+export const setUsersTC = (selectedPage: number, count: number) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getUsers(selectedPage, count)
+            .then((res) => {
+                dispatch(setUsersAC(res.data.items))
+                dispatch(setTotalCountAC(res.data.totalCount))
+            })
+    }
 }

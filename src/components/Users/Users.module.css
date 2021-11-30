@@ -1,27 +1,11 @@
-.userPhoto {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+.selected {
+    margin: auto 5px;
+    background-color: grey;
+    color: white;
 }
 
-.buttonBlock {
-    display: flex;
-    justify-content: center;
-}
-
-.userButton {
-    margin-top: 1rem;
-    margin-left: 0.25rem;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    background-color: dodgerblue;
-    letter-spacing: 1px;
-    line-height: 24px;
-    font-size: 12px;
-    box-sizing: border-box;
+.unSelected {
+    margin: auto 5px;
+    background-color: beige;
+    color: dimgray;
 }
