@@ -17,6 +17,7 @@ export type UsersResponseType = {
     error: string,
     pageSize: number,
     selectedPage: number
+    isFetching: boolean
 }
 const settings = {
     withCredentials: true,

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeSelectedPageAC, setUsersTC} from "../redux/users-reducer";
+import {changeSelectedPageAC, isFetchingAC, setUsersTC} from "../redux/users-reducer";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {RootStateType} from "../redux/redux-store";
 
@@ -58,12 +58,12 @@ const Paginator = () => {
                 })}
                 <Col>
                     {pagesCount > portionNumber &&
-                    <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => {
-                            setPortionNumber(portionNumber + 1)
-                        }}>next</Button>}
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => {
+                                setPortionNumber(portionNumber + 1)
+                            }}>next</Button>}
                 </Col>
             </Row>
 

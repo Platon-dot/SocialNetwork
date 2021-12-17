@@ -1,15 +1,16 @@
-import React, {FormEvent, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {followAC, unFollowAC} from "../../redux/users-reducer";
+import {followAC, isFetchingAC, unFollowAC} from "../../redux/users-reducer";
 import styles from './Users.module.css'
 import {UsersType} from "../../api/users-api";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
 import Paginator from "../../paginator/paginator";
 
 const Users = () => {
     let dispatch = useDispatch()
     let users = useSelector<RootStateType, UsersType[]>((state) => state.usersReducer.items)
+    let fetching = useSelector<RootStateType, boolean>(state => state.usersReducer.isFetching)
+
     const followHandler = (userId: number) => {
         dispatch(followAC(userId))
     }
@@ -19,7 +20,14 @@ const Users = () => {
 
     return (
         <>
-            <Paginator/>
+            <Row className="m-2">
+                <Col className="col-lg-1">
+                    {fetching ? <Spinner animation="border" variant="primary"/> : null}
+                </Col>
+                <Col className="col-lg-10">
+                    <Paginator/>
+                </Col>
+            </Row>
             {users.map(userT => {
                 return (
                     <Container className="container-sm "
