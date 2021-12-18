@@ -1,15 +1,28 @@
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {followAC, isFetchingAC, unFollowAC} from "../../redux/users-reducer";
+import {changeSelectedPageAC, followAC, setUsersTC, unFollowAC} from "../../redux/users-reducer";
 import styles from './Users.module.css'
-import {UsersType} from "../../api/users-api";
-import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
+import {UsersResponseType} from "../../api/users-api";
+import {Button, Col, Container, Nav, NavLink, Row, Spinner} from "react-bootstrap";
 import Paginator from "../../paginator/paginator";
+import {useEffect} from "react";
 
 const Users = () => {
     let dispatch = useDispatch()
-    let users = useSelector<RootStateType, UsersType[]>((state) => state.usersReducer.items)
-    let fetching = useSelector<RootStateType, boolean>(state => state.usersReducer.isFetching)
+    let {totalCount, pageSize, selectedPage} =
+        useSelector<RootStateType, UsersResponseType>((state) =>
+            state.usersReducer)
+
+    useEffect(() => {
+        dispatch(setUsersTC(selectedPage, pageSize))
+    }, [])
+
+    const activeSelected = (selectedPage: number) => {
+        dispatch(setUsersTC(selectedPage, pageSize))
+        dispatch(changeSelectedPageAC(selectedPage))
+    }
+
+    let {items, isFetching} = useSelector<RootStateType, UsersResponseType>(state => state.usersReducer)
 
     const followHandler = (userId: number) => {
         dispatch(followAC(userId))
@@ -22,22 +35,28 @@ const Users = () => {
         <>
             <Row className="m-2">
                 <Col className="col-lg-1">
-                    {fetching ? <Spinner animation="border" variant="primary"/> : null}
+                    {isFetching ? <Spinner animation="border" variant="primary"/> : null}
                 </Col>
                 <Col className="col-lg-10">
-                    <Paginator/>
+                    <Paginator
+                        totalCount={totalCount}
+                        pageSize={pageSize}
+                        selectedPage={selectedPage}
+                        activeSelected={activeSelected}/>
                 </Col>
             </Row>
-            {users.map(userT => {
+            {items.map(userT => {
                 return (
                     <Container className="container-sm "
                                key={userT.id}>
                         <Row className="justify-content-center m-5">
                             <Col className="col col-lg-2 bg-light">
-                                <img
-                                    src={userT.photos.small}
-                                    alt="avatar"
-                                    className={styles.userPhoto}/>
+                                <NavLink href={"/profile/" + userT.id}>
+                                    <img
+                                        src={userT.photos.small !== null ? userT.photos.small : 'http://sociala.uitheme.net/assets/images/user-8.png'}
+                                        alt="avatar"
+                                        className={styles.userPhoto}/>
+                                </NavLink>
                             </Col>
                             <Col className="col col-lg-2 bg-light">
                                 {userT.name}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-type PhotosType = {
+export type PhotosType = {
     small: string
     large: string
 }
@@ -19,6 +19,7 @@ export type UsersResponseType = {
     selectedPage: number
     isFetching: boolean
 }
+
 const settings = {
     withCredentials: true,
     headers: {
@@ -32,7 +33,6 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(selectedPage: number, count: number) {
-        // return instance.get<UsersResponseType>(`/users`)
         return instance.get<UsersResponseType>(`/users?page=${selectedPage}&count=${count}`)
     }
 }

@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from './ProfileZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
 import {useDispatch, useSelector} from "react-redux";
-import {addPostAC, onPostChangeAC} from "../../redux/profile-reducer";
+import {addPostAC, onPostChangeAC, setProfilesTS} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
 
 
@@ -11,13 +11,15 @@ const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
-    const newPostText = useSelector((state: RootStateType) => state.profileReducer.newPostText)
-    const userPosts = useSelector((state: RootStateType) => state.profileReducer.userPosts)
+    useEffect(() => {
+        dispatch(setProfilesTS())
+    }, [])
+
+    const {userPosts, newPostText} = useSelector((state: RootStateType) => state.profileReducer)
 
     const addPost = () => {
         dispatch(addPostAC())
     }
-
     const updateNewPostText = (value: string) => {
         dispatch(onPostChangeAC(value))
     }
@@ -30,7 +32,6 @@ const ProfileZone = () => {
             likeCounts={p.likes}
         />)
     )
-
     return (
         <div>
             <div className={style.image_for_news}>

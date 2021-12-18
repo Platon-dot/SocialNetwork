@@ -1,16 +1,6 @@
 import {v1} from "uuid";
-
-export type ProfileActionType = addPostActionType | onPostChangeActionType
-
-
-type addPostActionType = {
-    type: "ADD_POST",
-}
-
-type onPostChangeActionType = {
-    type: "UPDATE_NEW_POST_TEXT",
-    newPostText: string
-}
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/profile-api";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
@@ -38,7 +28,6 @@ const initialState = {
 
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
-
     switch (action.type) {
         case ADD_POST : {
             const newPost: PostsType = {
@@ -64,18 +53,31 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 };
 
 
-export const addPostAC = (): addPostActionType => {
-    return {
-        type: ADD_POST,
-    } as const
-}
+export const addPostAC = () => ({type: ADD_POST} as const)
 
-export const onPostChangeAC = (newPostText: string): onPostChangeActionType => {
+export const onPostChangeAC = (newPostText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newPostText: newPostText
     } as const
 }
+export const getProfilesAC = () => {
+    //to complete
+}
+export type ProfileActionType =
+    addPostActionType | onPostChangeActionType
+
+type addPostActionType = ReturnType<typeof addPostAC>
+type onPostChangeActionType = ReturnType<typeof onPostChangeAC>
+
+export const setProfilesTS = () => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getProfiles()
+            .then(res => {
+                console.log(res.data)
+            })
+    }
+}
 
 
-export default profileReducer
+

@@ -3,24 +3,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeSelectedPageAC, isFetchingAC, setUsersTC} from "../redux/users-reducer";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {RootStateType} from "../redux/redux-store";
+import {UsersResponseType} from "../api/users-api";
 
-const Paginator = () => {
+type PaginatorType = {
+    totalCount: number
+    pageSize: number
+    selectedPage: number
+    activeSelected: (selectedPage: number) => void
+}
 
-    let totalCount = useSelector<RootStateType, number>((state) => state.usersReducer.totalCount)
-    let pageSize = useSelector<RootStateType, number>((state) => state.usersReducer.pageSize)
-    let selectedPage = useSelector<RootStateType, number>((state) => state.usersReducer.selectedPage)
+const Paginator = (props: PaginatorType) => {
+
+    const {totalCount, pageSize, selectedPage, activeSelected} = props
+
+    // let dispatch = useDispatch()
 
 
-    let dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(setUsersTC(selectedPage, pageSize))
-    }, [])
-
-    const activeSelected = (selectedPage: number) => {
-        dispatch(setUsersTC(selectedPage, pageSize))
-        dispatch(changeSelectedPageAC(selectedPage))
-    }
 
     let pagesCount = Math.ceil(totalCount / pageSize)
     let pages = []
