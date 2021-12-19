@@ -10,7 +10,7 @@ const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
-    let profile = 21113
+    let profile = 10
 
     useEffect(() => {
         dispatch(setProfilesTS(profile))
