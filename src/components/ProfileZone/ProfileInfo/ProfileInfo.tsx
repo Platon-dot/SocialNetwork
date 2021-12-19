@@ -1,17 +1,24 @@
 import React from "react";
 import style from './ProfileInfo.module.css';
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../../redux/redux-store";
+import {ProfileResponseType} from "../../../redux/profile-reducer";
 
-type ProfileProps = {
-    userName: string
-}
 
+const ProfileInfo = () => {
 
-const ProfileInfo = (props: ProfileProps) => {
+    let {profile} = useSelector<RootStateType, ProfileResponseType>(state => state.profileReducer)
+
     return (
-        <div>
-            <span className={style.userNamePost}>{props.userName}</span>
-            <img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="userAvatar"/>
-        </div>
+        <>
+            <div>
+                <span className={style.userNamePost}>{profile.fullName}</span>
+                <img src={profile.photos.small} alt="userAvatar"/>
+            </div>
+            <div>
+
+            </div>
+        </>
     )
 }
 

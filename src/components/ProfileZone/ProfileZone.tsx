@@ -6,16 +6,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {addPostAC, onPostChangeAC, setProfilesTS} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
 
-
 const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
+    let profile = 21113
+
     useEffect(() => {
-        dispatch(setProfilesTS())
+        dispatch(setProfilesTS(profile))
     }, [])
 
-    const {userPosts, newPostText} = useSelector((state: RootStateType) => state.profileReducer)
+    const {userPosts, newPostText} = useSelector((state: RootStateType) =>
+        state.profileReducer)
 
     const addPost = () => {
         dispatch(addPostAC())
@@ -27,7 +29,6 @@ const ProfileZone = () => {
         <UserPosts
             key={p.id}
             id={p.id}
-            userName={p.name}
             message={p.message}
             likeCounts={p.likes}
         />)

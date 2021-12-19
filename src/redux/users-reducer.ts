@@ -1,7 +1,6 @@
 import {Dispatch} from "redux";
 import {usersAPI, UsersResponseType, UsersType} from "../api/users-api";
 
-
 const initialState: UsersResponseType = {
     items: [],
     totalCount: 0,
@@ -10,6 +9,7 @@ const initialState: UsersResponseType = {
     selectedPage: 1,
     isFetching: true
 }
+
 export const usersReducer = (state: UsersResponseType = initialState, action: UsersActionType): UsersResponseType => {
     switch (action.type) {
         case 'SET-USERS':

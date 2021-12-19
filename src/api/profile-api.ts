@@ -1,7 +1,6 @@
 import axios from "axios";
-import {PhotosType} from "./users-api";
 
-type contactsType = {
+export type contactsType = {
     facebook: string
     website: string
     vk: string
@@ -12,16 +11,22 @@ type contactsType = {
     mainLink: string
 }
 
-export type ProfileResponseType = {
+export type ProfileType = {
     aboutMe: string
     contacts: contactsType,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
     userId: number,
-    photos: PhotosType
+    photos: {
+        small: string
+        large: string
+    }
 }
 
+// export type ProfileResponseType = {
+//     profile: ProfileType
+// }
 
 const settings = {
     withCredentials: true,
@@ -36,7 +41,7 @@ const instance = axios.create({
 })
 
 export const profileAPI = {
-    getProfiles() {
-        return instance.get<PhotosType>(`https://social-network.samuraijs.com/api/1.0/profile/${21398}`)
+    getProfiles(profile: number) {
+        return instance.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${profile}`)
     }
 }
