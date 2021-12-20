@@ -12,10 +12,15 @@ type DialogsPropsType = {
     message: MessagesType[]
 }
 
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = () => {
 
-    let showDialogElements = props.dialog.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-    let showMessageElements = props.message.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
+    let dialog = useSelector<RootStateType, DialogsType[]>(state =>
+        state.dialogsReducer.dialogsData)
+    let message = useSelector<RootStateType, MessagesType[]>(state =>
+        state.dialogsReducer.messagesData)
+
+    let showDialogElements = dialog.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    let showMessageElements = message.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
 
     let newMessage = useSelector((state: RootStateType) => state.dialogsReducer.newMessageBody)
 

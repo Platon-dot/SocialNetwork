@@ -5,15 +5,23 @@ import NewUserMessage from "./NewMessage/NewUserMessage";
 import {useDispatch, useSelector} from "react-redux";
 import {addPostAC, onPostChangeAC, setProfilesTS} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
+import {useHistory, useLocation, useParams, useRouteMatch} from "react-router-dom";
+
+type user = {
+    userId: string
+}
 
 const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
-    let profile = 10
+    // let url = useLocation()
+
+    let {userId}:user = useParams()
+    console.log(userId)
 
     useEffect(() => {
-        dispatch(setProfilesTS(profile))
+        dispatch(setProfilesTS(+userId))
     }, [])
 
     const {userPosts, newPostText} = useSelector((state: RootStateType) =>
@@ -29,6 +37,7 @@ const ProfileZone = () => {
         <UserPosts
             key={p.id}
             id={p.id}
+            userName={p.name}
             message={p.message}
             likeCounts={p.likes}
         />)

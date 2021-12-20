@@ -11,19 +11,12 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
-import {RootStateType} from "./redux/redux-store";
-import { useSelector} from "react-redux";
-import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
 import Users from "./components/Users/Users";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfilePageContainer from "./components/ProfileZone/ProfileInfo/ProfilePageContainer";
 
 
 const App = () => {
-    let dialog = useSelector<RootStateType, DialogsType[]>(state =>
-        state.dialogsReducer.dialogsData)
-    let message = useSelector<RootStateType, MessagesType[]>(state =>
-        state.dialogsReducer.messagesData)
-
     return (
         <div className="backgroundZone">
             <Route component={Header}/>
@@ -32,12 +25,8 @@ const App = () => {
                 <Route component={Friends}/>
                 <div className="socialPageContent">
                     <Route path="/profile" component={ProfileZone}/>
-                    <Route path="/dialogs" render={() =>
-                        <Dialogs
-                            dialog={dialog}
-                            message={message}
-                        />}
-                    />
+                    <Route path="/test/:userId" component={ProfilePageContainer}/>
+                    <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/users" component={Users}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>

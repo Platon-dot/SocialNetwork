@@ -101,7 +101,6 @@ export const setProfilesTS = (profile: number) => {
         profileAPI.getProfiles(profile)
             .then((res) => {
                 dispatch(setProfilesAC(res.data))
-                console.log(res.data.photos.small)
             })
     }
 }

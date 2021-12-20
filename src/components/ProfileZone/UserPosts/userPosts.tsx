@@ -6,6 +6,7 @@ import {ProfileResponseType} from "../../../redux/profile-reducer";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
 
 export type UsePostsPropsType = {
+    userName: string
     message: string
     likeCounts: number
     id: string
@@ -19,7 +20,7 @@ const UserPosts = (props: UsePostsPropsType) => {
         <div>
             <div className={style.userPostsBlock}>
                 <div className={style.userPost}>
-                    <ProfileInfo profile={profile}/>
+                    <ProfileInfo userName={props.userName}/>
                     {props.message}
                     <div>
                         <span>{props.likeCounts} Like</span>

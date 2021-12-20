@@ -3,9 +3,9 @@ import style from './Settings.module.css';
 
 const Settings = (props: any) => {
     return (
-        <div>
+        <>
             Settings
-        </div>
+        </>
     )
 }
 

@@ -6,8 +6,10 @@ import {UsersResponseType} from "../../api/users-api";
 import {Button, Col, Container, Nav, NavLink, Row, Spinner} from "react-bootstrap";
 import Paginator from "../../paginator/paginator";
 import {useEffect} from "react";
+import {useHistory, useLocation} from "react-router-dom";
 
 const Users = () => {
+
     let dispatch = useDispatch()
     let {totalCount, pageSize, selectedPage} =
         useSelector<RootStateType, UsersResponseType>((state) =>
@@ -31,6 +33,7 @@ const Users = () => {
         dispatch(unFollowAC(userId))
     }
 
+
     return (
         <>
             <Row className="m-2">
@@ -51,7 +54,7 @@ const Users = () => {
                                key={userT.id}>
                         <Row className="justify-content-center m-5">
                             <Col className="col col-lg-2 bg-light">
-                                <NavLink href={`/profile/${userT.id}`}>
+                                <NavLink href={`/test/${userT.id}`}>
                                     <img
                                         src={userT.photos.small !== null ? userT.photos.small : 'http://sociala.uitheme.net/assets/images/user-8.png'}
                                         alt="avatar"

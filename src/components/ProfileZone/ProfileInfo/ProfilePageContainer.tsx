@@ -1,6 +1,9 @@
 import React from 'react';
 
-const ProfileContainer = () => {
+const ProfilePageContainer = () => {
+
+
+
     return (
         <>
 
@@ -8,4 +11,4 @@ const ProfileContainer = () => {
     );
 };
 
-export default ProfileContainer;
+export default ProfilePageContainer;
