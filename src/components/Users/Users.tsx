@@ -54,7 +54,7 @@ const Users = () => {
                                key={userT.id}>
                         <Row className="justify-content-center m-5">
                             <Col className="col col-lg-2 bg-light">
-                                <NavLink href={`/test/${userT.id}`}>
+                                <NavLink href={`/profilePage/${userT.id}`}>
                                     <img
                                         src={userT.photos.small !== null ? userT.photos.small : 'http://sociala.uitheme.net/assets/images/user-8.png'}
                                         alt="avatar"

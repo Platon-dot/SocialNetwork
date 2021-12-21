@@ -24,10 +24,6 @@ export type ProfileType = {
     }
 }
 
-// export type ProfileResponseType = {
-//     profile: ProfileType
-// }
-
 const settings = {
     withCredentials: true,
     headers: {

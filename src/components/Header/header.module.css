@@ -47,3 +47,11 @@ input {
 .searchZone {
     padding-left: 20px;
 }
+
+.authText {
+    color: #eeeeee;
+}
+
+.inputAuth {
+    margin-top: 0;
+}

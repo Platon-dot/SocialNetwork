@@ -15,15 +15,6 @@ const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
-    // let url = useLocation()
-
-    let {userId}:user = useParams()
-    console.log(userId)
-
-    useEffect(() => {
-        dispatch(setProfilesTS(+userId))
-    }, [])
-
     const {userPosts, newPostText} = useSelector((state: RootStateType) =>
         state.profileReducer)
 

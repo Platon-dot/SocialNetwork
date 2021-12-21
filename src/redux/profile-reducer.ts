@@ -85,7 +85,7 @@ export const onPostChangeAC = (newPostText: string) => {
         newPostText: newPostText
     } as const
 }
-export const setProfilesAC = (profile: any) => ({type: 'SET-USERS-PROFILE', profile} as const)
+export const setProfilesAC = (profile: ProfileType) => ({type: 'SET-USERS-PROFILE', profile} as const)
 
 export type ProfileActionType =
     addPostActionType | onPostChangeActionType |

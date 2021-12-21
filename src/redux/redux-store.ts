@@ -4,12 +4,14 @@ import {sideBarReducer} from "./sidebar-reducer";
 import {usersReducer} from "./users-reducer";
 import thunk from "redux-thunk";
 import {profileReducer} from "./profile-reducer";
+import {authReducer} from "./auth-reducer";
 
 let reducersSet = combineReducers({
     profileReducer: profileReducer,
     dialogsReducer: dialogsReducer,
     sideBarReducer: sideBarReducer,
-    usersReducer: usersReducer
+    usersReducer: usersReducer,
+    authReducer: authReducer
 })
 
 export type RootStateType = ReturnType<typeof reducersSet>

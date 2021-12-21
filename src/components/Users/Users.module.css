@@ -14,4 +14,12 @@
     height: 60px;
     width: 60px;
     border-radius: 45%;
+    margin-right: 15px;
+}
+
+.imageColorTrue {
+    color: green
+}
+.imageColorFalse {
+    color: orangered;
 }

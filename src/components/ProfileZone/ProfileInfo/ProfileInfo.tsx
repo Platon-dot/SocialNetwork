@@ -16,7 +16,8 @@ export const ProfileInfo = (props: ProfileProps) => {
         <>
             <div>
                 <span className={style.userNamePost}>{props.userName}</span>
-                <img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="userAvatar"/>
+                {/*<img src="https://www.1zoom.ru/big2/58/195128-Sepik.jpg" alt="userAvatar"/>*/}
+
             </div>
         </>
     )
