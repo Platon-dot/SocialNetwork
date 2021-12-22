@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/SocialNetwork/static/css/main.c6de0362.chunk.css",
-    "main.js": "/SocialNetwork/static/js/main.c0160196.chunk.js",
-    "main.js.map": "/SocialNetwork/static/js/main.c0160196.chunk.js.map",
-    "runtime-main.js": "/SocialNetwork/static/js/runtime-main.f42fb365.js",
-    "runtime-main.js.map": "/SocialNetwork/static/js/runtime-main.f42fb365.js.map",
-    "static/js/2.b5b52943.chunk.js": "/SocialNetwork/static/js/2.b5b52943.chunk.js",
-    "static/js/2.b5b52943.chunk.js.map": "/SocialNetwork/static/js/2.b5b52943.chunk.js.map",
-    "static/js/3.522f44ca.chunk.js": "/SocialNetwork/static/js/3.522f44ca.chunk.js",
-    "static/js/3.522f44ca.chunk.js.map": "/SocialNetwork/static/js/3.522f44ca.chunk.js.map",
+    "main.css": "/SocialNetwork/static/css/main.671891c2.chunk.css",
+    "main.js": "/SocialNetwork/static/js/main.adeb6994.chunk.js",
+    "main.js.map": "/SocialNetwork/static/js/main.adeb6994.chunk.js.map",
+    "runtime-main.js": "/SocialNetwork/static/js/runtime-main.d72fd718.js",
+    "runtime-main.js.map": "/SocialNetwork/static/js/runtime-main.d72fd718.js.map",
+    "static/css/2.038361d8.chunk.css": "/SocialNetwork/static/css/2.038361d8.chunk.css",
+    "static/js/2.ac601c06.chunk.js": "/SocialNetwork/static/js/2.ac601c06.chunk.js",
+    "static/js/2.ac601c06.chunk.js.map": "/SocialNetwork/static/js/2.ac601c06.chunk.js.map",
     "index.html": "/SocialNetwork/index.html",
-    "static/css/main.c6de0362.chunk.css.map": "/SocialNetwork/static/css/main.c6de0362.chunk.css.map",
-    "static/js/2.b5b52943.chunk.js.LICENSE.txt": "/SocialNetwork/static/js/2.b5b52943.chunk.js.LICENSE.txt",
+    "static/css/2.038361d8.chunk.css.map": "/SocialNetwork/static/css/2.038361d8.chunk.css.map",
+    "static/css/main.671891c2.chunk.css.map": "/SocialNetwork/static/css/main.671891c2.chunk.css.map",
+    "static/js/2.ac601c06.chunk.js.LICENSE.txt": "/SocialNetwork/static/js/2.ac601c06.chunk.js.LICENSE.txt",
     "static/media/logotype.3b80a557.png": "/SocialNetwork/static/media/logotype.3b80a557.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.f42fb365.js",
-    "static/js/2.b5b52943.chunk.js",
-    "static/css/main.c6de0362.chunk.css",
-    "static/js/main.c0160196.chunk.js"
+    "static/js/runtime-main.d72fd718.js",
+    "static/css/2.038361d8.chunk.css",
+    "static/js/2.ac601c06.chunk.js",
+    "static/css/main.671891c2.chunk.css",
+    "static/js/main.adeb6994.chunk.js"
   ]
 }
