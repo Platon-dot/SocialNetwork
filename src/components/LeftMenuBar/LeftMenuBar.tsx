@@ -7,10 +7,6 @@ import authorProfile from "../../img/linkedin.png";
 import style from './LeftMenuBar.module.css'
 import {NavLink} from "react-router-dom";
 
-type NavLinkType = {
-    children: string,
-    href: string,
-};
 
 const LeftMenuBar = () => {
     return (

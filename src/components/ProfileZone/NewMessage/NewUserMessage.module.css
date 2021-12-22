@@ -1,46 +1,9 @@
-.newMessage {
-    grid-area: newpost;
-    background: #f7f7f7;
-    padding: 1.5rem 1.5rem 1rem 1.5rem;
-    margin-bottom: 1rem;
-    width: 98%;
-    border-radius: 15px;
-    display: grid;
-    grid-template-areas:
-    "lineButton"
-    "textArea";
-    grid-column: auto;
-    grid-gap: 5px;
+
+.buttonNewMassage {
+    margin-top: 25px;
+    height: 48px;
 }
 
-.userTextArea {
-    grid-area: textArea;
+.inputBox {
+    width: 1200px;
 }
-
-.lineNewPost {
-    text-decoration: none;
-    text-align: center;
-}
-
-.userTextArea textarea {
-    border-radius: 15px;
-    border: 2px #f1f1f1 solid;
-    font-size: 12px;
-    height: 100px;
-    width: 95%;
-    font-family: inherit;
-    padding: 10px 10px 10px 10px;
-}
-
-button {
-    grid-area: lineButton;
-    color: white;
-    font-weight: bold;
-    margin-left: 10%;
-    padding: 10px 10px 10px 10px;
-    border: 2px #f1f1f1 solid;
-    background: #85c6d4;
-    border-radius: 15px;
-    display: flex;
-}
-

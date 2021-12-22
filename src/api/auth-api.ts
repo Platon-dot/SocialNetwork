@@ -1,5 +1,4 @@
-import axios, {AxiosResponse} from "axios";
-import {authResponseType} from "../redux/auth-reducer";
+import axios from "axios";
 
 export type dataAuthType = {
     id: number

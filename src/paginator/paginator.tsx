@@ -1,9 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {changeSelectedPageAC, isFetchingAC, setUsersTC} from "../redux/users-reducer";
+import React, {useState} from 'react'
 import {Button, Col, Container, Row} from "react-bootstrap";
-import {RootStateType} from "../redux/redux-store";
-import {UsersResponseType} from "../api/users-api";
+
 
 type PaginatorType = {
     totalCount: number
@@ -15,10 +12,6 @@ type PaginatorType = {
 const Paginator = (props: PaginatorType) => {
 
     const {totalCount, pageSize, selectedPage, activeSelected} = props
-
-    // let dispatch = useDispatch()
-
-
 
     let pagesCount = Math.ceil(totalCount / pageSize)
     let pages = []

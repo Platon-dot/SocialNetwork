@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from "react";
 import style from './NewUserMessage.module.css';
+import {Button, FormControl, InputGroup} from "react-bootstrap";
 
 
 type NewMessageType = {
@@ -8,7 +9,7 @@ type NewMessageType = {
     updateNewPostText: (userMessage: string) => void
 }
 
-const  NewUserMessage = (props: NewMessageType) => {
+const NewUserMessage = (props: NewMessageType) => {
 
     const addPostHandler = () => {
         props.addPost()
@@ -19,24 +20,26 @@ const  NewUserMessage = (props: NewMessageType) => {
         props.updateNewPostText(e.currentTarget.value)
     }
 
-
     return (
-        <div className={style.newPost}>
-            <div className={style.lineNewPost}>
-                <a href="#" className={style.lineNewPost}>
-                    <i className={style.logoNewPost}/>
-                    <button onClick={addPostHandler}>Add post</button>
-                </a>
-            </div>
-            <div className={style.userTextArea}>
-                    <textarea name="message"
-                              className={style.userMessage}
-                              cols={30} rows={10}
-                              placeholder="What's on your mind?"
-                              onChange={onPostChange}
-                              value={props.newPostText}/>
-            </div>
-        </div>
+        <>
+            <InputGroup className={`mb-1 ${style.inputBox}`}>
+                <FormControl
+                    placeholder="What's on your mind?"
+                    aria-describedby="basic-addon2"
+                    className={style.userMessage}
+                    onChange={onPostChange}
+                    value={props.newPostText}
+                />
+                <Button
+                    variant="outline-secondary"
+                    className={style.buttonNewMassage}
+                    id="button-addon2"
+                    onClick={addPostHandler}>
+                    Button
+                </Button>
+            </InputGroup>
+        </>
+
     )
 }
 

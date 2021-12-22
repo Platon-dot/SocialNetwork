@@ -1,15 +1,11 @@
-import React, {useEffect} from "react";
+import React from "react";
 import style from './ProfileZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
 import {useDispatch, useSelector} from "react-redux";
 import {addPostAC, onPostChangeAC, setProfilesTS} from "../../redux/profile-reducer";
 import {RootStateType} from "../../redux/redux-store";
-import {useHistory, useLocation, useParams, useRouteMatch} from "react-router-dom";
 
-type user = {
-    userId: string
-}
 
 const ProfileZone = () => {
 

@@ -53,24 +53,24 @@ export const profileReducer = (state: ProfileResponseType = initialState, action
     switch (action.type) {
         case "SET-USERS-PROFILE":
             return {...state, profile: action.profile}
-        // case "ADD-POST" : {
-        //     const newPost: PostsType = {
-        //         id: v1(),
-        //         name: "Sonia",
-        //         message: state.newPostText,
-        //         likes: 0
-        //     };
-        //     return {
-        //         ...state,
-        //         userPosts: [newPost, ...state.userPosts]
-        //     }
-        // }
-        // case UPDATE_NEW_POST_TEXT: {
-        //     return {
-        //         ...state,
-        //         newPostText: action.newPostText
-        //     }
-        // }
+        case "ADD-POST" : {
+            const newPost: PostsType = {
+                id: v1(),
+                name: "Sonia",
+                message: state.newPostText,
+                likes: 0
+            };
+            return {
+                ...state,
+                userPosts: [newPost, ...state.userPosts]
+            }
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            return {
+                ...state,
+                newPostText: action.newPostText
+            }
+        }
         default:
             return state
     }

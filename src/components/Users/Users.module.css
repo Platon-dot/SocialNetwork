@@ -1,25 +1,31 @@
-.selected {
-    margin: auto 5px;
-    background-color: grey;
-    color: white;
-}
+/*.selected {*/
+/*    margin: auto 5px;*/
+/*    background-color: grey;*/
+/*    color: white;*/
+/*}*/
 
-.unSelected {
-    margin: auto 5px;
-    background-color: beige;
-    color: dimgray;
-}
+/*.unSelected {*/
+/*    margin: auto 5px;*/
+/*    background-color: beige;*/
+/*    color: dimgray;*/
+/*}*/
 
-.userPhoto {
-    height: 60px;
-    width: 60px;
-    border-radius: 45%;
-    margin-right: 15px;
-}
+/*.userPhoto {*/
+/*    height: 60px;*/
+/*    width: 60px;*/
+/*    border-radius: 45%;*/
+/*    margin-right: 15px;*/
+/*}*/
 
-.imageColorTrue {
-    color: green
-}
+/*.imageColorTrue {*/
+/*    color: green*/
+/*}*/
+
 .imageColorFalse {
     color: orangered;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
 }

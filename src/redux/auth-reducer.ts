@@ -1,7 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI, UsersResponseType, UsersType} from "../api/users-api";
-import {authAPI, AuthType, dataAuthType} from "../api/auth-api";
-import {AxiosResponse} from "axios";
+import {authAPI,dataAuthType} from "../api/auth-api";
 
 export type authResponseType = {
     data: dataAuthType
@@ -13,10 +11,12 @@ const initialState: authResponseType = {
     isAuth: false
 }
 
+console.log(initialState.data)
+
 export const authReducer = (state: authResponseType = initialState, action: AuthActionType) => {
     switch (action.type) {
         case "SET-AUTH-USER-DATA":
-            return {...state, ...action.data, isAuth: true}
+            return {...state, data: action.data, isAuth: true}
         default:
             return state
     }

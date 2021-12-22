@@ -7,10 +7,6 @@ import {DialogsType, MessagesType} from "../../redux/dialogs-reducer";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 
-type DialogsPropsType = {
-    dialog: DialogsType[]
-    message: MessagesType[]
-}
 
 const Dialogs = () => {
 

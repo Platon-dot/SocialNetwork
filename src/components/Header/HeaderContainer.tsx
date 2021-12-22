@@ -12,11 +12,7 @@ const HeaderContainer = () => {
     const dispatch = useDispatch()
     const {isAuth} = useSelector<RootStateType, authResponseType>(state => state.authReducer)
 
-   //НЕ ОТОБРАЖАЕТСЯ. ВЫЯСНИТЬ ПОЧЕМУ
-    const login = useSelector<RootStateType>(state => state.authReducer.data.id)
-
-    console.log(`HeaderContainer ${login}`)
-
+    const login = useSelector<RootStateType>(state => state.authReducer.data.login)
 
     return <Header isAuth={isAuth} login={login}/>
 };

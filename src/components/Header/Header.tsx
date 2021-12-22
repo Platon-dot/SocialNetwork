@@ -11,7 +11,7 @@ type HeaderType = {
 const Header = (props: HeaderType) => {
 
     const {isAuth, login} = props
-    console.log(login)
+
 
     return <div className={style.top}>
         <div className={`${style.logo} ${style.header}`}>
@@ -20,11 +20,7 @@ const Header = (props: HeaderType) => {
         <div className={style.search}>
             <input className={style.searchZone} type="text" placeholder="Start typing to search.."/>
         </div>
-        {/*<div>*/}
-        {/*    <NavLink href={'/login'} className={style.authText}>Login</NavLink>*/}
-        {/*    <NavLink href={'/login'} className={style.authText}>Password</NavLink>*/}
-        {/*</div>*/}
-        { (isAuth) ? login :
+        {(isAuth) ? <p className={style.login}>User name: {login}</p> :
             <Form className="mt-1">
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={4} className="mt-1">

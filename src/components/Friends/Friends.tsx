@@ -1,14 +1,5 @@
 import React from "react";
-import style from './Friends.module.css'
-import {v1} from "uuid";
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../redux/redux-store";
 
-type bestFriendsTypes = {
-    id: string
-    name: string
-    imgOfBestFriend: string
-}
 
 const Friends = () => {
     // const bestFriends = useSelector((state: RootStateType) => state.usersReducer.bestFriends)

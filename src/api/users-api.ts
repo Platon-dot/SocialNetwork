@@ -8,7 +8,7 @@ export type UsersType = {
     name: string,
     id: number,
     photos: PhotosType,
-    status:string,
+    status: string,
     followed: boolean
 }
 export type UsersResponseType = {
@@ -18,6 +18,10 @@ export type UsersResponseType = {
     pageSize: number,
     selectedPage: number
     isFetching: boolean
+}
+
+export type FollowResponseType = {
+    resultCode: number
 }
 
 const settings = {
@@ -34,5 +38,14 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(selectedPage: number, count: number) {
         return instance.get<UsersResponseType>(`/users?page=${selectedPage}&count=${count}`)
+    },
+    followUnfollowUser(userId: number, value: boolean) {
+        if (value) {
+            return instance.delete<FollowResponseType>(`/follow/${userId}`)
+        } else {
+            return instance.post<FollowResponseType>(`/follow/${userId}`)
+        }
+
     }
 }
+type Follow = {}
