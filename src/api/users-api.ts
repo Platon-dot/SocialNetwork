@@ -18,6 +18,7 @@ export type UsersResponseType = {
     pageSize: number,
     selectedPage: number
     isFetching: boolean
+    followingInProgress: boolean
 }
 
 export type FollowResponseType = {
@@ -45,7 +46,5 @@ export const usersAPI = {
         } else {
             return instance.post<FollowResponseType>(`/follow/${userId}`)
         }
-
     }
 }
-type Follow = {}

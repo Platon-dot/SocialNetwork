@@ -1,18 +1,22 @@
 import React from 'react';
 import {Button, Col, Container, NavLink, Row} from "react-bootstrap";
 import styles from "./Users.module.css";
-import {UsersResponseType, UsersType} from "../../api/users-api";
+import {UsersType} from "../../api/users-api";
 
 
 export type UsersBodyType = {
     items: UsersType[]
-    followUnfollowHandler: any
+    followUnfollowHandler: (userId: number, value: boolean) => void
+    followingInProgress: boolean
 }
 
 export const UsersBody = (props: UsersBodyType) => {
+
+    const {items, followUnfollowHandler, followingInProgress} = props
+
     return (
         <>
-            {props.items.map(userT => {
+            {items.map(userT => {
                 return (
                     <Container className="container-sm "
                                key={userT.id}>
@@ -30,12 +34,13 @@ export const UsersBody = (props: UsersBodyType) => {
                                 {userT.status}
                             </Col>
                             <Col className="col col-lg-2 bg-light justify-content-center ">
-                                    <Button
-                                        className="mt-3"
-                                        variant="outline-primary"
-                                        onClick={() => props.followUnfollowHandler(userT.id, userT.followed)}>
-                                        {!userT.followed ? "FOLLOW" : "UNFOLLOW"}
-                                    </Button>
+                                <Button
+                                    disabled={followingInProgress}
+                                    className={`mt-3 `}
+                                    variant="outline-primary"
+                                    onClick={() => followUnfollowHandler(userT.id, userT.followed)}>
+                                    {!userT.followed ? "FOLLOW" : "UNFOLLOW"}
+                                </Button>
                             </Col>
                         </Row>
                     </Container>

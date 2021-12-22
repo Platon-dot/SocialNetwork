@@ -7,7 +7,8 @@ const initialState: UsersResponseType = {
     error: '',
     pageSize: 5,
     selectedPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: false
 }
 
 export const usersReducer = (state: UsersResponseType = initialState, action: UsersActionType): UsersResponseType => {
@@ -45,32 +46,36 @@ export const usersReducer = (state: UsersResponseType = initialState, action: Us
         case "TOGGLE-IS-FETCHING": {
             return {...state, isFetching: action.isFetching}
         }
+        case "TOGGLE-IS-FOLLOWING-PROGRESS": {
+            return {...state, followingInProgress: action.followingInProgress}
+        }
         default:
             return state
     }
 };
 
 export const setUsersAC = (arrayUsers: UsersType[]) => ({type: 'SET-USERS', arrayUsers} as const)
-// export const followAC = (userId: number) => ({type: 'FOLLOW-USERS', userId} as const)
 export const followUnfollowAC = (userId: number) => ({type: 'FOLLOW-UNFOLLOW-USERS', userId} as const)
 export const setTotalCountAC = (totalCount: number) => ({type: 'TOTAL-COUNT', totalCount} as const)
 export const changeSelectedPageAC = (selectedPage: number) => ({type: 'CHANGE-SELECTED-PAGE', selectedPage} as const)
 export const isFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
-
+export const toggleIsFollowingProgressAC = (followingInProgress: boolean) => ({type: 'TOGGLE-IS-FOLLOWING-PROGRESS', followingInProgress} as const)
 
 export type UsersActionType =
     followUnfollowACActionType |
     setUsersActionType |
     setTotalCountActionType |
     changeSelectedPageActionType |
-    isFetchingActionType
+    isFetchingActionType |
+    toggleIsFetchingActionType
 
-// type followACActionType = ReturnType<typeof followAC>
-type followUnfollowACActionType = ReturnType<typeof followUnfollowAC>
 type setUsersActionType = ReturnType<typeof setUsersAC>
 type setTotalCountActionType = ReturnType<typeof setTotalCountAC>
 type changeSelectedPageActionType = ReturnType<typeof changeSelectedPageAC>
+type followUnfollowACActionType = ReturnType<typeof followUnfollowAC>
 type isFetchingActionType = ReturnType<typeof isFetchingAC>
+type toggleIsFetchingActionType = ReturnType<typeof toggleIsFollowingProgressAC>
+
 
 
 export const setUsersTC = (selectedPage: number, count: number) => {
@@ -87,10 +92,12 @@ export const setUsersTC = (selectedPage: number, count: number) => {
 
 export const followUserTC = (userId: number, value: boolean) => {
     return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgressAC(true))
         usersAPI.followUnfollowUser(userId, value)
             .then((res) => {
                 if (res.data.resultCode === 0) {
                     dispatch(followUnfollowAC(userId))
+                    dispatch(toggleIsFollowingProgressAC(false))
                 }
             })
     }

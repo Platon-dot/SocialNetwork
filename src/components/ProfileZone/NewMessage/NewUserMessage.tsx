@@ -2,7 +2,6 @@ import React, {ChangeEvent} from "react";
 import style from './NewUserMessage.module.css';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 
-
 type NewMessageType = {
     newPostText: string
     addPost: () => void

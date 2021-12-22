@@ -27,7 +27,7 @@ const Users = () => {
         dispatch(changeSelectedPageAC(selectedPage))
     }
 
-    let {items, isFetching} = useSelector<RootStateType, UsersResponseType>(state => state.usersReducer)
+    let {items, isFetching, followingInProgress} = useSelector<RootStateType, UsersResponseType>(state => state.usersReducer)
 
     const followUnfollowHandler = (userId: number, value: boolean) => {
         console.log(value)
@@ -51,7 +51,7 @@ const Users = () => {
             <UsersBody
                 items={items}
                 followUnfollowHandler={followUnfollowHandler}
-
+                followingInProgress={followingInProgress}
             />
         </>
     )
