@@ -7,7 +7,7 @@ import {UsersType} from "../../api/users-api";
 export type UsersBodyType = {
     items: UsersType[]
     followUnfollowHandler: (userId: number, value: boolean) => void
-    followingInProgress: boolean
+    followingInProgress: any
 }
 
 export const UsersBody = (props: UsersBodyType) => {
@@ -35,7 +35,7 @@ export const UsersBody = (props: UsersBodyType) => {
                             </Col>
                             <Col className="col col-lg-2 bg-light justify-content-center ">
                                 <Button
-                                    disabled={followingInProgress}
+                                    disabled={followingInProgress.some((id: number) => id === userT.id)}
                                     className={`mt-3 `}
                                     variant="outline-primary"
                                     onClick={() => followUnfollowHandler(userT.id, userT.followed)}>

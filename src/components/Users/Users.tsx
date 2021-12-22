@@ -30,7 +30,6 @@ const Users = () => {
     let {items, isFetching, followingInProgress} = useSelector<RootStateType, UsersResponseType>(state => state.usersReducer)
 
     const followUnfollowHandler = (userId: number, value: boolean) => {
-        console.log(value)
         dispatch(followUserTC(userId, value))
     }
 
