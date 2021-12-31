@@ -3,24 +3,22 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import NewDialogMessage from "./Message/NewMessage/NewDialogMessage";
-import {DialogsType, MessagesType} from "../../redux/dialogs-reducer";
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../redux/redux-store";
+import {DialogsPageTypes} from "../../redux/dialogs-reducer";
+import {useAppSelector} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 
 const Dialogs = () => {
 
-    let dialog = useSelector<RootStateType, DialogsType[]>(state =>
-        state.dialogsReducer.dialogsData)
-    let message = useSelector<RootStateType, MessagesType[]>(state =>
-        state.dialogsReducer.messagesData)
+    const {dialogsData, messagesData, newMessageBody} = useAppSelector<DialogsPageTypes>(state =>
+        state.dialogsReducer)
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
-    let showDialogElements = dialog.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-    let showMessageElements = message.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
+    let showDialogElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
 
-    let newMessage = useSelector((state: RootStateType) => state.dialogsReducer.newMessageBody)
+    let showMessageElements = messagesData.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
 
-
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <div>
             <div className={style.dialogs_global}>
@@ -32,7 +30,7 @@ const Dialogs = () => {
                 </div>
             </div>
             <NewDialogMessage
-                newMessage={newMessage}
+                newMessage={newMessageBody}
             />
         </div>
     )

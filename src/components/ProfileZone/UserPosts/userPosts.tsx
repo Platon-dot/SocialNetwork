@@ -1,8 +1,5 @@
 import React from "react";
 import style from './userPosts.module.css';
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../../redux/redux-store";
-import {ProfileResponseType} from "../../../redux/profile-reducer";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
 
 export type UsePostsPropsType = {
@@ -14,7 +11,7 @@ export type UsePostsPropsType = {
 
 const UserPosts = (props: UsePostsPropsType) => {
 
-    let {profile} = useSelector<RootStateType, ProfileResponseType>(state => state.profileReducer)
+    // let {profile} = useSelector<RootStateType, ProfileResponseType>(state => state.profileReducer)
 
     return (
         <div>

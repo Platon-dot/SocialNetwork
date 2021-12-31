@@ -1,7 +1,10 @@
 import React from "react";
-import style from './Settings.module.css';
+import {useAppSelector} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
-const Settings = (props: any) => {
+const Settings = () => {
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <>
             Settings

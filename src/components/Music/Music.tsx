@@ -1,7 +1,11 @@
 import React from "react";
-import style from './Music.module.css';
+import {useAppSelector} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
-const Music = (props: any) => {
+
+const Music = () => {
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <div>
             Music

@@ -5,6 +5,7 @@ import {usersReducer} from "./users-reducer";
 import thunk from "redux-thunk";
 import {profileReducer} from "./profile-reducer";
 import {authReducer} from "./auth-reducer";
+import {TypedUseSelectorHook, useSelector} from "react-redux";
 
 let reducersSet = combineReducers({
     profileReducer: profileReducer,
@@ -17,5 +18,6 @@ let reducersSet = combineReducers({
 export type RootStateType = ReturnType<typeof reducersSet>
 
 export let store = createStore(reducersSet, applyMiddleware(thunk))
+export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
 //@ts-ignore
 window.store = store

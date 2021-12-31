@@ -2,17 +2,18 @@ import React from "react";
 import style from './ProfileZone.module.css';
 import UserPosts from "./UserPosts/userPosts";
 import NewUserMessage from "./NewMessage/NewUserMessage";
-import {useDispatch, useSelector} from "react-redux";
-import {addPostAC, onPostChangeAC, setProfilesTS} from "../../redux/profile-reducer";
-import {RootStateType} from "../../redux/redux-store";
+import {useDispatch} from "react-redux";
+import {addPostAC, onPostChangeAC, ProfileResponseType} from "../../redux/profile-reducer";
+import {useAppSelector} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 
 const ProfileZone = () => {
 
     const dispatch = useDispatch()
 
-    const {userPosts, newPostText} = useSelector((state: RootStateType) =>
-        state.profileReducer)
+    const {userPosts, newPostText} = useAppSelector<ProfileResponseType>(state => state.profileReducer)
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
     const addPost = () => {
         dispatch(addPostAC())
@@ -29,11 +30,12 @@ const ProfileZone = () => {
             likeCounts={p.likes}
         />)
     )
+
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <div>
             <div className={style.image_for_news}>
                 <img
-                    // src="/src/img/mainImage.jpg"
                     src="https://upload.wikimedia.org/wikipedia/commons/2/2c/The_social_network.svg"
                     alt="logo"/>
             </div>
@@ -48,6 +50,7 @@ const ProfileZone = () => {
             </div>
         </div>
     )
+
 }
 
 export default ProfileZone

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {RootStateType} from "../../../redux/redux-store";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../../redux/redux-store";
 import {ProfileResponseType, setProfilesTS} from "../../../redux/profile-reducer";
-import {useLocation, useParams} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import styles from "../../Users/Users.module.css";
 import Image from 'react-bootstrap/Image'
 
@@ -15,8 +15,8 @@ const ProfilePageContainer = () => {
 
     let dispatch = useDispatch()
 
-    let {profile} = useSelector<RootStateType, ProfileResponseType>(state => state.profileReducer)
-
+    let {profile} = useAppSelector<ProfileResponseType>(state => state.profileReducer)
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
     useEffect(() => {
         dispatch(setProfilesTS(+userId))
@@ -24,7 +24,7 @@ const ProfilePageContainer = () => {
 
     let {userId}: user = useParams()
 
-
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <>
             <h3>{profile.fullName}</h3>
