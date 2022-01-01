@@ -14,13 +14,10 @@ import Users from "./components/Users/Users";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfilePageContainer from "./components/ProfileZone/ProfileInfo/ProfilePageContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {useAppSelector} from "./redux/redux-store";
-import {authResponseType} from "./redux/auth-reducer";
 import Login from "./components/Login/Login";
 
 
 const App = () => {
-    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
     return (
         <div className="backgroundZone">

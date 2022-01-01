@@ -10,12 +10,11 @@ import {Redirect} from "react-router-dom";
 
 const Dialogs = () => {
 
-    const {dialogsData, messagesData, newMessageBody} = useAppSelector<DialogsPageTypes>(state =>
-        state.dialogsReducer)
+    const {dialogsData, messagesData, newMessageBody} =
+        useAppSelector<DialogsPageTypes>(state => state.dialogsReducer)
     const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
     let showDialogElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-
     let showMessageElements = messagesData.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
 
     if (!isAuth) return <Redirect to="/login"/>

@@ -21,7 +21,7 @@ const ProfileZone = () => {
     const updateNewPostText = (value: string) => {
         dispatch(onPostChangeAC(value))
     }
-    let showPost = userPosts.map(p => (
+    const showPost = userPosts.map(p => (
         <UserPosts
             key={p.id}
             id={p.id}
