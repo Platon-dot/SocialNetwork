@@ -38,6 +38,7 @@ export const setAuthUserTC = () => {
                     let {id, email, login} = res.data.data
                     dispatch(setUsersDataAC(id, email, login))
                     console.log(id, email, login)
+                    console.log(res.data.resultCode)
                 }
             })
     }
