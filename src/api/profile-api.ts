@@ -24,6 +24,12 @@ export type ProfileType = {
     }
 }
 
+export type ProfileStatusType = {
+    resultCode: number
+    message: string[]
+    data: {}
+}
+
 const settings = {
     withCredentials: true,
     headers: {
@@ -38,6 +44,9 @@ const instance = axios.create({
 
 export const profileAPI = {
     getProfiles(profile: number) {
-        return instance.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${profile}`)
+        return instance.get<ProfileType>(`/profile/${profile}`)
+    },
+    getStatus(userId: string) {
+        return instance.get<ProfileStatusType>(`/profile/${userId}`)
     }
 }

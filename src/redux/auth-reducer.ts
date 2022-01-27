@@ -11,7 +11,6 @@ const initialState: authResponseType = {
     isAuth: false
 }
 
-console.log(initialState.data)
 
 export const authReducer = (state: authResponseType = initialState, action: AuthActionType) => {
     switch (action.type) {
@@ -37,8 +36,6 @@ export const setAuthUserTC = () => {
                 if (res.data.resultCode === 0) {
                     let {id, email, login} = res.data.data
                     dispatch(setUsersDataAC(id, email, login))
-                    console.log(id, email, login)
-                    console.log(res.data.resultCode)
                 }
             })
     }

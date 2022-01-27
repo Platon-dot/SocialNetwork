@@ -16,6 +16,7 @@ export type ProfileResponseType = {
     profile: ProfileType
     userPosts: PostsType[]
     newPostText: string
+    status: string
 }
 
 const initialState: ProfileResponseType = {
@@ -46,6 +47,7 @@ const initialState: ProfileResponseType = {
         {id: v1(), name: "Katia", message: "Hola Joan", likes: 65},
     ],
     newPostText: "",
+    status: ""
 }
 
 
@@ -71,6 +73,9 @@ export const profileReducer = (state: ProfileResponseType = initialState, action
                 newPostText: action.newPostText
             }
         }
+        case "profile-reducer/SET-STATUS": {
+            return {...state, status: action.status}
+        }
         default:
             return state
     }
@@ -86,14 +91,17 @@ export const onPostChangeAC = (newPostText: string) => {
     } as const
 }
 export const setProfilesAC = (profile: ProfileType) => ({type: 'SET-USERS-PROFILE', profile} as const)
+export const setStatusAC = (status: string) => ({type: 'profile-reducer/SET-STATUS', status} as const)
+
 
 export type ProfileActionType =
     addPostActionType | onPostChangeActionType |
-    setProfilesActionType
+    setProfilesActionType | setStatusActionType
 
 type addPostActionType = ReturnType<typeof addPostAC>
 type onPostChangeActionType = ReturnType<typeof onPostChangeAC>
 type setProfilesActionType = ReturnType<typeof setProfilesAC>
+type setStatusActionType = ReturnType<typeof setStatusAC>
 
 
 export const setProfilesTS = (profile: number) => {
@@ -105,6 +113,14 @@ export const setProfilesTS = (profile: number) => {
     }
 }
 
-
+export const getUserStatusTC = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getStatus(userId)
+            .then((res) => {
+                // dispatch(setStatusAC(res.data))
+                console.log(res)
+            })
+    }
+}
 
 

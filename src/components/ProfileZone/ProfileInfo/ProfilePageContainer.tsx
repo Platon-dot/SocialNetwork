@@ -14,7 +14,6 @@ type user = {
 const ProfilePageContainer = () => {
 
     let dispatch = useDispatch()
-
     let {profile} = useAppSelector<ProfileResponseType>(state => state.profileReducer)
     const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
@@ -22,9 +21,11 @@ const ProfilePageContainer = () => {
         dispatch(setProfilesTS(+userId))
     }, [])
 
+
     let {userId}: user = useParams()
 
     if (!isAuth) return <Redirect to="/login"/>
+
     return (
         <>
             <h3>{profile.fullName}</h3>

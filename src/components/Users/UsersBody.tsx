@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, Col, Container, NavLink, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import styles from "./Users.module.css";
 import {UsersType} from "../../api/users-api";
+import {NavLink} from "react-router-dom";
 
 
 export type UsersBodyType = {
@@ -22,7 +23,8 @@ export const UsersBody = (props: UsersBodyType) => {
                                key={userT.id}>
                         <Row className="justify-content-center m-5">
                             <Col className="col col-lg-2 bg-light">
-                                <NavLink href={`/profilePage/${userT.id}`}>
+                                <NavLink to={`/profilePage/${userT.id}`}>
+
                                     <img
                                         src={userT.photos.small !== null ? userT.photos.small : 'http://sociala.uitheme.net/assets/images/user-8.png'}
                                         alt="avatar"

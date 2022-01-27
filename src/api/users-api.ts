@@ -46,5 +46,6 @@ export const usersAPI = {
         } else {
             return instance.post<FollowResponseType>(`/follow/${userId}`)
         }
-    }
+    },
+    
 }
