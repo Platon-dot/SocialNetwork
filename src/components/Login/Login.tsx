@@ -3,7 +3,10 @@ import {Redirect} from "react-router-dom";
 import {useAppSelector} from "../../redux/redux-store";
 
 const Login = () => {
+    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
+    let userId = useAppSelector<number>(state => state.authReducer.data.id)
 
+    if (isAuth) return <Redirect to={`/profile/${userId}`}/>
 
     return (
         <div>

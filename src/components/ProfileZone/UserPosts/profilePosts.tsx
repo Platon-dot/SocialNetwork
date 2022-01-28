@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import style from './userPosts.module.css';
+import style from './profilePosts.module.css';
 import {Card, Col, Container, Row} from "react-bootstrap";
 
 export type UsePostsPropsType = {
@@ -9,10 +9,11 @@ export type UsePostsPropsType = {
     id: string
 }
 
-const UserPosts = (props: UsePostsPropsType) => {
+const ProfilePosts = (props: UsePostsPropsType) => {
 
     const [status, setStatus] = useState('hola')
     const [editMode, setEditMode] = useState(true)
+
 
     const activateEditMode = () => {
         setEditMode(false)
@@ -72,4 +73,4 @@ const UserPosts = (props: UsePostsPropsType) => {
     )
 }
 
-export default UserPosts
+export default ProfilePosts

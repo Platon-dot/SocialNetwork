@@ -6,16 +6,18 @@ import popularGroups from "../../img/instagram.png";
 import authorProfile from "../../img/linkedin.png";
 import style from './LeftMenuBar.module.css'
 import {NavLink} from "react-router-dom";
+import {useAppSelector} from "../../redux/redux-store";
 
 
 const LeftMenuBar = () => {
+    let userId = useAppSelector<number>(state => state.authReducer.data.id)
     return (
         <div className={style.leftMenu}>
             <h5 className={style.boxMenuName}>News Feeds</h5>
             <div className={style.itemLink}>
                 <img className={style.iconMenu} src={newsfeed} alt=""/>
                 <span className={style.linkName}>
-                    <NavLink to="/profile" activeClassName={style.activeLink}>
+                    <NavLink to={`/profile/${userId}`} activeClassName={style.activeLink}>
                         News page
                     </NavLink>
                 </span>

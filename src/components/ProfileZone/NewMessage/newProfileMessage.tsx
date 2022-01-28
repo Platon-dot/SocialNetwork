@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import style from './NewUserMessage.module.css';
+import style from './newProfileMessage.module.css';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 
 type NewMessageType = {
@@ -8,7 +8,7 @@ type NewMessageType = {
     updateNewPostText: (userMessage: string) => void
 }
 
-const NewUserMessage = (props: NewMessageType) => {
+const NewProfileMessage = (props: NewMessageType) => {
 
     const addPostHandler = () => {
         props.addPost()
@@ -43,4 +43,4 @@ const NewUserMessage = (props: NewMessageType) => {
 }
 
 
-export default NewUserMessage
+export default NewProfileMessage

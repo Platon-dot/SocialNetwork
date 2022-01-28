@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {contactsType, profileAPI, ProfileType} from "../api/profile-api";
+import { profileAPI, ProfileType} from "../api/profile-api";
 
 
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
@@ -104,7 +104,7 @@ type setProfilesActionType = ReturnType<typeof setProfilesAC>
 type setStatusActionType = ReturnType<typeof setStatusAC>
 
 
-export const setProfilesTS = (profile: number) => {
+export const setProfilesTC = (profile: number) => {
     return (dispatch: Dispatch) => {
         profileAPI.getProfiles(profile)
             .then((res) => {
@@ -113,14 +113,23 @@ export const setProfilesTS = (profile: number) => {
     }
 }
 
-export const getUserStatusTC = (userId: string) => {
+export const getUserStatusTC = (userId: number) => {
     return (dispatch: Dispatch) => {
         profileAPI.getStatus(userId)
             .then((res) => {
-                // dispatch(setStatusAC(res.data))
-                console.log(res)
+                dispatch(setStatusAC(res.data))
+                // console.log(res.data)
             })
     }
 }
 
-
+export const updateUserStatusTC = (status: string) => {
+    return (dispatch :Dispatch) => {
+        profileAPI.updateStatus(status)
+            .then((res) => {
+                if (res.data.resultCode === 0) {
+                    dispatch(setStatusAC(status))
+                }
+            })
+    }
+}

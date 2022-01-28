@@ -1,19 +1,22 @@
 import React from "react";
-import style from './ProfileZone.module.css';
-import UserPosts from "./UserPosts/userPosts";
-import NewUserMessage from "./NewMessage/NewUserMessage";
+import style from './profilePage.module.css';
+import ProfilePosts from "./UserPosts/profilePosts";
+import NewProfileMessage from "./NewMessage/newProfileMessage";
 import {useDispatch} from "react-redux";
 import {addPostAC, onPostChangeAC, ProfileResponseType} from "../../redux/profile-reducer";
 import {useAppSelector} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
+import {useParams} from "react-router-dom";
+import ProfilePageContainer from "./ProfileInfo/profilePageContainer";
 
+export type user = {
+    userId: string
+}
 
-const ProfileZone = () => {
+const ProfilePage = () => {
 
     const dispatch = useDispatch()
 
     const {userPosts, newPostText} = useAppSelector<ProfileResponseType>(state => state.profileReducer)
-    const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
 
     const addPost = () => {
         dispatch(addPostAC())
@@ -22,7 +25,7 @@ const ProfileZone = () => {
         dispatch(onPostChangeAC(value))
     }
     const showPost = userPosts.map(p => (
-        <UserPosts
+        <ProfilePosts
             key={p.id}
             id={p.id}
             userName={p.name}
@@ -31,16 +34,19 @@ const ProfileZone = () => {
         />)
     )
 
-    if (!isAuth) return <Redirect to="/login"/>
+    let {userId}: user = useParams()
+
+
     return (
         <div>
+            <ProfilePageContainer/>
             <div className={style.image_for_news}>
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/2/2c/The_social_network.svg"
                     alt="logo"/>
             </div>
 
-            <NewUserMessage
+            <NewProfileMessage
                 newPostText={newPostText}
                 addPost={addPost}
                 updateNewPostText={updateNewPostText}
@@ -53,4 +59,4 @@ const ProfileZone = () => {
 
 }
 
-export default ProfileZone
+export default ProfilePage

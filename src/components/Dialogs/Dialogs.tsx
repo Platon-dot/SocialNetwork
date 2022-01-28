@@ -17,7 +17,7 @@ const Dialogs = () => {
     let showDialogElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
     let showMessageElements = messagesData.map(m => <Message message={m.message} id={m.id} key={m.id}/>)
 
-    if (!isAuth) return <Redirect to="/login"/>
+    // if (!isAuth) return <Redirect to="/login"/>
     return (
         <div>
             <div className={style.dialogs_global}>
