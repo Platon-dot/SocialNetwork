@@ -16,9 +16,10 @@ const Users = () => {
 
     const dispatch = useDispatch()
     const {totalCount, pageSize, selectedPage, items, isFetching, followingInProgress} =
-        useAppSelector<UsersResponseType>((state) =>
-            state.usersReducer)
+        useAppSelector<UsersResponseType>((state) => state.usersReducer)
+
     const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
+
     useEffect(() => {
         dispatch(setUsersTC(selectedPage, pageSize))
     }, [])

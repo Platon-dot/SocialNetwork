@@ -11,10 +11,10 @@ import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import Users from "./components/Users/Users";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfilePageContainer from "./components/ProfileZone/ProfileInfo/profilePageContainer";
+import ProfilePageContainer from "./components/Profile/ProfileInfo/profilePageContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import ProfilePage from "./components/ProfileZone/profilePage";
+import ProfilePage from "./components/Profile/profilePage";
 
 
 const App = () => {

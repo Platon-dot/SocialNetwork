@@ -1,7 +1,7 @@
 import React from "react";
 import style from './profilePage.module.css';
-import ProfilePosts from "./UserPosts/profilePosts";
-import NewProfileMessage from "./NewMessage/newProfileMessage";
+import ProfilePosts from "./profileUsersPosts/profilePosts";
+import NewProfileMessage from "./NewProfileMessage/newProfileMessage";
 import {useDispatch} from "react-redux";
 import {addPostAC, onPostChangeAC, ProfileResponseType} from "../../redux/profile-reducer";
 import {useAppSelector} from "../../redux/redux-store";
