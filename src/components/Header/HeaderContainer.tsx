@@ -11,7 +11,6 @@ const HeaderContainer = () => {
 
     const dispatch = useDispatch()
     const {isAuth} = useAppSelector<authResponseType>(state => state.authReducer)
-
     const login = useAppSelector<string>(state => state.authReducer.data.login)
 
     return <Header isAuth={isAuth} login={login}/>

@@ -5,7 +5,6 @@ import Message from "./Message/Message";
 import NewDialogMessage from "./Message/NewMessage/NewDialogMessage";
 import {DialogsPageTypes} from "../../redux/dialogs-reducer";
 import {useAppSelector} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
 
 
 const Dialogs = () => {

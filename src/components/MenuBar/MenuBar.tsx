@@ -4,12 +4,12 @@ import badges from "../../img/dribbble.png";
 import exploreStories from "../../img/google_plus.png";
 import popularGroups from "../../img/instagram.png";
 import authorProfile from "../../img/linkedin.png";
-import style from './LeftMenuBar.module.css'
+import style from './MenuBar.module.css'
 import {NavLink} from "react-router-dom";
 import {useAppSelector} from "../../redux/redux-store";
 
 
-const LeftMenuBar = () => {
+const MenuBar = () => {
     let userId = useAppSelector<number>(state => state.authReducer.data.id)
     return (
         <div className={style.leftMenu}>
@@ -66,4 +66,4 @@ const LeftMenuBar = () => {
     )
 }
 
-export default LeftMenuBar
+export default MenuBar

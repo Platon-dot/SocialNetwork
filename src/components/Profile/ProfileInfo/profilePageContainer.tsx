@@ -1,31 +1,64 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useAppSelector} from "../../../redux/redux-store";
-import {getUserStatusTC, ProfileResponseType, setProfilesTC} from "../../../redux/profile-reducer";
+import {getUserStatusTC, ProfileResponseType, setProfilesTC, updateUserStatusTC} from "../../../redux/profile-reducer";
 import {Redirect, useParams} from "react-router-dom";
 import styles from "../../Users/Users.module.css";
 import Image from 'react-bootstrap/Image'
 import {user} from "../profilePage";
+import {ProfileType} from "../../../api/profile-api";
 
 
-const ProfilePageContainer = () => {
-
+const ProfilePageContainer = React.memo(() => {
     let dispatch = useDispatch()
-    let {profile} = useAppSelector<ProfileResponseType>(state => state.profileReducer)
+    let profile = useAppSelector<ProfileType>(state => state.profileReducer.profile)
     const isAuth = useAppSelector<boolean>(state => state.authReducer.isAuth)
     const status = useAppSelector<string>(state => state.profileReducer.status)
     let {userId}: user = useParams()
 
+
     useEffect(() => {
-        dispatch(setProfilesTC(+userId))
-        dispatch(getUserStatusTC(+userId))
+        setTimeout(() => {
+            dispatch(setProfilesTC(+userId))
+            dispatch(getUserStatusTC(+userId))
+        }, 1500)
     }, [])
+
+
+    const [localStatus, setLocalStatus] = useState(status)
+    const [editMode, setEditMode] = useState(true)
+
+    const activateEditMode = () => {
+        setEditMode(!editMode)
+        dispatch(updateUserStatusTC(localStatus))
+    }
+
+    const changeStatusProfileText = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value.length <= 300) {
+            setLocalStatus(e.currentTarget.value)
+        }
+    }
 
     if (!isAuth) return <Redirect to="/login"/>
     return (
-        <>
-            <h3>{profile.fullName}</h3>
-            <div>Статус пользователя: {status}</div>
+        <div style={{height: "250px", width: "300px"}}>
+            <div style={{height: "50px"}}>
+                {profile.fullName}
+            </div>
+            {editMode ?
+                <div>
+                    Status: <span onDoubleClick={activateEditMode}>
+                    {status === "" ? 'Please put you current status' : status}
+                </span>
+                </div>
+                :
+                <input
+                    type="text"
+                    value={localStatus}
+                    onChange={changeStatusProfileText}
+                    onBlur={activateEditMode}
+                    autoFocus
+                />}
             <Image
                 src={profile.photos.large}
                 alt="avatar"
@@ -55,8 +88,8 @@ const ProfilePageContainer = () => {
             </div>
             <div>Looking for a job description:{profile.lookingForAJobDescription}</div>
             <div><span>About me:  </span><span>{profile.aboutMe}</span></div>
-        </>
+        </div>
     );
-};
+});
 
 export default ProfilePageContainer;

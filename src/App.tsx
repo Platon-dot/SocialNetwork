@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import LeftMenuBar from "./components/LeftMenuBar/LeftMenuBar";
+import MenuBar from "./components/MenuBar/MenuBar";
 import SettingsBox from "./components/Settings/SettingsBox";
 import Footer from "./components/Footer/Footer";
 import {Redirect, Route} from "react-router-dom";
@@ -24,7 +24,7 @@ const App = () => {
         <div className="backgroundZone">
             <Route component={HeaderContainer}/>
             <div className="socialPage">
-                <Route component={LeftMenuBar}/>
+                <Route component={MenuBar}/>
                 <Route component={Friends}/>
                 <div className="socialPageContent">
                     {/*<Route path="/" exact component={ProfilePage} />*/}

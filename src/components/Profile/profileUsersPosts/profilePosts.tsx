@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import style from './profilePosts.module.css';
 import {Card, Col, Container, Row} from "react-bootstrap";
+import {updateUserStatusTC} from "../../../redux/profile-reducer";
 
 export type UsePostsPropsType = {
     userName: string
@@ -11,20 +12,16 @@ export type UsePostsPropsType = {
 
 const ProfilePosts = (props: UsePostsPropsType) => {
 
-    const [status, setStatus] = useState('hola')
+    const [status, setStatus] = useState('')
     const [editMode, setEditMode] = useState(true)
 
-
     const activateEditMode = () => {
-        setEditMode(false)
+        setEditMode(!editMode)
+        updateUserStatusTC(status)
     }
 
     const changeInputTextProfile = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
-    }
-
-    const activateViewMode = () => {
-        setEditMode(true)
     }
 
     return (
@@ -36,7 +33,7 @@ const ProfilePosts = (props: UsePostsPropsType) => {
                         {props.userName}
                     </Col>
                     <Col md={{span: "auto", offset: 4}}>
-                        <span>my status: </span>
+                        <span>User status status: </span>
                         {editMode ?
                             <span onDoubleClick={activateEditMode}>
                                     {status}
@@ -47,7 +44,7 @@ const ProfilePosts = (props: UsePostsPropsType) => {
                                 value={status}
                                 className={style.inputUserProfileMassage}
                                 onChange={changeInputTextProfile}
-                                onBlur={activateViewMode}
+                                onBlur={activateEditMode}
                                 autoFocus
                             />}
                     </Col>
